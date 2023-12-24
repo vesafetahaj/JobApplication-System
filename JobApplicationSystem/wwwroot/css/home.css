@@ -1,0 +1,73 @@
+﻿body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+h1 {
+    font-family: 'Sequel', sans-serif;
+}
+
+video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+    animation: fadeIn 1s ease-out; /* Faster fade-in animation (1 second) */
+}
+
+    .text-container h1 {
+        font-size: 3em;
+        margin: 0;
+    }
+
+.btn {
+    width: 100px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeIn 1s ease-out; /* Faster fade-in animation (1 second) */
+    font-weight: bold;
+}
+
+#firstbttn {
+    margin-left: 110px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

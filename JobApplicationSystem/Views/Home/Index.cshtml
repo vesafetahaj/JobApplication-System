@@ -1,8 +1,56 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+<div class="video-background">
+    <video autoplay loop muted playsinline>
+        <source src="~/images/mixkit-open-office-space-914-medium.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
 </div>
+
+<div class="text-container">
+    <h1 class="display-4">Welcome to WorkLoop</h1>
+
+    <div class="mt-3">
+        <ul class="navbar-nav">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <div class="row g-2">
+                        <div class="col-3" id="firstbttn">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">
+                                <button class="btn btn-light btn-block">Register</button>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">
+                                <button class="btn btn-dark btn-block">Login</button>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+<link href="https://fonts.cdnfonts.com/css/sequel" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">

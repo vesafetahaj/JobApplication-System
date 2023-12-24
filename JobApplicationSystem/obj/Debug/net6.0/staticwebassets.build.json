@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pLrGRWGzDO0aRSXPdEXuansg96+gLnRvneaTZ8yqPAI=",
+  "Hash": "iARwZ4QvBcn8qXgF1pyBJ5U5xSZWQv1+snHVPRixcPk=",
   "Source": "JobApplicationSystem",
   "BasePath": "_content/JobApplicationSystem",
   "Mode": "Default",
@@ -1071,6 +1071,23 @@
       "OriginalItemSpec": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\JobApplicationSystem.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\css\\home.css",
+      "SourceId": "JobApplicationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\",
+      "BasePath": "_content/JobApplicationSystem",
+      "RelativePath": "css/home.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\home.css"
+    },
+    {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\css\\site.css",
       "SourceId": "JobApplicationSystem",
       "SourceType": "Discovered",
@@ -1103,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\mixkit-open-office-space-914-medium.mp4",
+      "SourceId": "JobApplicationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\",
+      "BasePath": "_content/JobApplicationSystem",
+      "RelativePath": "images/mixkit-open-office-space-914-medium.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\mixkit-open-office-space-914-medium.mp4"
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\js\\site.js",

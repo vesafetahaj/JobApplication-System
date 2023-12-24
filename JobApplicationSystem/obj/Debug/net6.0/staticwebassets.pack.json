@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\JobApplicationSystem.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\css\\home.css",
+      "PackagePath": "staticwebassets\\css\\home.css"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\mixkit-open-office-space-914-medium.mp4",
+      "PackagePath": "staticwebassets\\images\\mixkit-open-office-space-914-medium.mp4"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\js\\site.js",
