@@ -1,0 +1,93 @@
+﻿.video-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(rgba(210, 180, 140, 0), rgba(210, 180, 140, 0.5));
+}
+
+    .video-background video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+    }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.modal-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    padding: 20px;
+    background: linear-gradient(to right, #d2b48c, #8b735b); 
+    border-radius: 30px;
+}
+
+#login-submit {
+    background-color: #a0522d;
+    color: #fff;
+    border-color: #a0522d;
+}
+
+    #login-submit:hover {
+        background-color: #8b4513;
+        border-color: #8b4513;
+    }
+
+a {
+    color: #a0522d;
+    margin-left: 260px;
+}
+
+    a:hover {
+        color: #8b4513;
+    }
+
+.form-floating {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Sequel', sans-serif;
+    text-transform: uppercase;
+    color: #8b4513;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
