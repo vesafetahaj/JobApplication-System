@@ -1,4 +1,7 @@
-﻿using JobApplicationSystem.Data;
+﻿using JobApplicationSystem.DAL.Contracts;
+using JobApplicationSystem.DAL.Repositories;
+using JobApplicationSystem.Data;
+using JobApplicationSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +13,14 @@ namespace JobApplicationSystem.BAL.Services
 {
     public class RoleService : IRoleService
     {
-        private readonly JobApplicationSystemContext _dbContext;
-        public RoleService(JobApplicationSystemContext dbContext)
+        private readonly IRoleRepository<AspNetRole> _repository;
+        public RoleService(IRoleRepository<AspNetRole> _repository)
         {
-            _dbContext = dbContext;
+            _repository = _repository;
         }
-        public List<string> GetAllRoles()
+        public List<AspNetRole> GetAllRoles()
         {
-            return _dbContext.AspNetRoles
-            .Select(role => role.Name)
-            .ToList();
+            return _repository.GetAll();
         }
 
         

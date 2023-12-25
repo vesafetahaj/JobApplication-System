@@ -1,10 +1,9 @@
 ﻿@page
 @model RegisterModel
-@using JobApplicationSystem.BAL.Services
-@inject IRoleService RoleService
+
 @{
     ViewData["Title"] = "Register";
-    var roles = RoleService.GetAllRoles();
+    var roles = ViewData["Roles"] as SelectList;
 }
 
 <div class="video-background">
@@ -36,7 +35,7 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <select asp-for="Input.SelectedRole" asp-items="@((SelectList)ViewData["Roles"])" class="form-control">
+                <select asp-for="Input.SelectedRole" asp-items="@(roles ?? new SelectList(new List<string>()))" class="form-control">
                     <option value="">Select a role</option>
                 </select>
                 <label asp-for="Input.SelectedRole" class="form-label"></label>

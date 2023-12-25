@@ -8,6 +8,6 @@ namespace JobApplicationSystem.BAL.Services
 {
     public interface IRoleService
     {
-        List<string> GetAllRoles();
+       
     }
 }

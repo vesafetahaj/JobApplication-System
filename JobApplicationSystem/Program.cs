@@ -2,6 +2,9 @@ using JobApplicationSystem.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using JobApplicationSystem.BAL.Services;
+using JobApplicationSystem.DAL.Repositories;
+using JobApplicationSystem.DAL.Contracts;
+using JobApplicationSystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +21,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IRoleRepository<AspNetRole>, RoleRepository>();
+
+
 
 builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
