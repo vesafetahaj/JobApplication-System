@@ -1,7 +1,10 @@
 ﻿@page
 @model RegisterModel
+@using JobApplicationSystem.BAL.Services
+@inject IRoleService RoleService
 @{
     ViewData["Title"] = "Register";
+    var roles = RoleService.GetAllRoles();
 }
 
 <div class="video-background">
@@ -31,6 +34,12 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <select asp-for="Input.SelectedRole" asp-items="@((SelectList)ViewData["Roles"])" class="form-control">
+                    <option value="">Select a role</option>
+                </select>
+                <label asp-for="Input.SelectedRole" class="form-label"></label>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button><br />
             <p>

@@ -1,19 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using JobApplicationSystem.BAL.Services;
 
 namespace JobApplicationSystem.Controllers
 {
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _manager;
-        public RolesController(RoleManager<IdentityRole> roleManager)
+        private readonly IRoleService _roleService;
+        public RolesController(RoleManager<IdentityRole> roleManager, IRoleService roleService)
         {
             _manager = roleManager;
-
+            _roleService = roleService;
         }
         public IActionResult Index()
         {
-            var roles = _manager.Roles;
+            var roles = _roleService.GetAllRoles();
             return View(roles);
         }
         [HttpGet]

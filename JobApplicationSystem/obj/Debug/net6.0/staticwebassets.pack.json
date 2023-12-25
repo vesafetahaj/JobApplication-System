@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\JobApplicationSystem.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\css\\forgotpassword.css",
+      "PackagePath": "staticwebassets\\css\\forgotpassword.css"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\css\\home.css",
       "PackagePath": "staticwebassets\\css\\home.css"
     },
