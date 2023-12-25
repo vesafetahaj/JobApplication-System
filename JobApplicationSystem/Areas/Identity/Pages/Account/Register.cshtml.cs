@@ -103,7 +103,7 @@ namespace JobApplicationSystem.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "The Role field is required.")]
             [Display(Name = "Role")]
             public string SelectedRole { get; set; }
         }

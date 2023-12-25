@@ -20,13 +20,34 @@
             @if (SignInManager.IsSignedIn(User))
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+                    <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
                 </li>
-                <li class="nav-item">
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                    </form>
-                </li>
+                <div class="d-flex justify-content-center align-items-center">
+                    <li class="nav-item">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-outline-secondary text-white" style="margin-right: 60px;">Logout</button>
+                        </form>
+                    </li>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                        <a class="nav-link btn btn-outline-secondary text-white" asp-controller="Administrator" asp-action="Index">Dashboard</a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Employer"))
+                    {
+                        <li class="nav-item">
+                        <a class="nav-link btn btn-outline-secondary text-white" asp-controller="Employer" asp-action="Index">Dashboard</a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Applicant"))
+                    {
+                        <li class="nav-item">
+                        <a class="nav-link btn btn-outline-secondary text-white" asp-controller="Applicant" asp-action="Index">Dashboard</a>
+                        </li>
+                    }
+                </div>
             }
             else
             {
@@ -47,8 +68,8 @@
             }
         </ul>
     </div>
-    
 </div>
+
 @section Scripts {
     <script src="~/js/login.js"></script>
 }

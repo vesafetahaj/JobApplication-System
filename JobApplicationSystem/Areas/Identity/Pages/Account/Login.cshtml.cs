@@ -120,16 +120,16 @@ namespace JobApplicationSystem.Areas.Identity.Pages.Account
 
                     if (roles.Contains("Admin"))
                     {
-                        return RedirectToAction("Index", "Administrators");
+                        return RedirectToAction("Index", "Administrator");
 
                     }
                     else if (roles.Contains("Employer"))
                     {
-                        return RedirectToAction("Index", "Employers");
+                        return RedirectToAction("Index", "Employer");
                     }
                     else if (roles.Contains("Applicant"))
                     {
-                        return RedirectToAction("Index", "Applicants");
+                        return RedirectToAction("Index", "Applicant");
                     }
                     
                     else

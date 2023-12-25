@@ -40,6 +40,7 @@
                     <option value="">Select a role</option>
                 </select>
                 <label asp-for="Input.SelectedRole" class="form-label"></label>
+                <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button><br />
             <p>
