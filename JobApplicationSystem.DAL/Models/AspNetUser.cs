@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JobApplicationSystem.Models
+namespace JobApplicationSystem.DAL.Models
 {
     public partial class AspNetUser
     {
@@ -29,6 +29,8 @@ namespace JobApplicationSystem.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
 
+        public virtual Applicant? Applicant { get; set; }
+        public virtual Employer? Employer { get; set; }
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }

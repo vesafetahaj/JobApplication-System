@@ -12,7 +12,10 @@ namespace JobApplicationSystem.Controllers
         {
             return View();
         }
-
+        public ActionResult Profile()
+        {
+            return View();
+        }
         // GET: ApplicantController/Details/5
         public ActionResult Details(int id)
         {

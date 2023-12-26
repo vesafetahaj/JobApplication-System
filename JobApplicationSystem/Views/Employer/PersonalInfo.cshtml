@@ -1,0 +1,55 @@
+﻿@model JobApplicationSystem.DAL.Models.Employer
+@{
+    Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+}
+<h2>Provide Personal Information</h2>
+
+
+@if (Model == null || Model.Address == null)
+{
+    <form asp-action="PersonalInfo">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Surname"></label>
+            <input asp-for="Surname" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" value="@User.Identity.Name" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Mobile"></label>
+            <input asp-for="Mobile" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Address"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Image"></label>
+            <input type="file" asp-for="Image" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Company"></label>
+            <select asp-for="Company" asp-items="@(ViewData["CompanyList"] as SelectList)" class="form-control">
+                <option value="">Select Company</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+}
+else
+{
+    <h5>You already provided information</h5>
+    <p>
+        <a asp-action="DetailsById" asp-controller="Employer">Go to Your Profile</a>
+    </p>
+}

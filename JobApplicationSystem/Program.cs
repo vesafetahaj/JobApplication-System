@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using JobApplicationSystem.BAL.Services;
 using JobApplicationSystem.DAL.Repositories;
 using JobApplicationSystem.DAL.Contracts;
-using JobApplicationSystem.Models;
+using JobApplicationSystem.DAL.Models;
+using JobApplicationSystem.DAL.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IEmployerService, EmployerService>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IRoleRepository<AspNetRole>, RoleRepository>();
+builder.Services.AddScoped<IEmployerRepository<Employer>, EmployerRepository>();
+builder.Services.AddScoped<ICompanyRepository<Company>, CompanyRepository>();
 
 
 

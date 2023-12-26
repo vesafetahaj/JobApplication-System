@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JobApplicationSystem.Models
+namespace JobApplicationSystem.DAL.Models
 {
     public partial class AspNetRole
     {

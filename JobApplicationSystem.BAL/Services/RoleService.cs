@@ -1,7 +1,7 @@
 ﻿using JobApplicationSystem.DAL.Contracts;
 using JobApplicationSystem.DAL.Repositories;
-using JobApplicationSystem.Data;
-using JobApplicationSystem.Models;
+using JobApplicationSystem.DAL.Data;
+using JobApplicationSystem.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

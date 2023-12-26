@@ -1,6 +1,6 @@
 ﻿using JobApplicationSystem.DAL.Contracts;
-using JobApplicationSystem.Data;
-using JobApplicationSystem.Models;
+using JobApplicationSystem.DAL.Data;
+using JobApplicationSystem.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

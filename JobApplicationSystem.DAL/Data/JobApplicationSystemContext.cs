@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using JobApplicationSystem.Models;
+using JobApplicationSystem.DAL.Models;
 
-namespace JobApplicationSystem.Data
+namespace JobApplicationSystem.DAL.Data
 {
     public partial class JobApplicationSystemContext : DbContext
     {
@@ -17,12 +17,16 @@ namespace JobApplicationSystem.Data
         {
         }
 
+        public virtual DbSet<Applicant> Applicants { get; set; } = null!;
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; } = null!;
         public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; } = null!;
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
+        public virtual DbSet<Company> Companies { get; set; } = null!;
+        public virtual DbSet<Employer> Employers { get; set; } = null!;
+        public virtual DbSet<Resume> Resumes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,6 +39,52 @@ namespace JobApplicationSystem.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Applicant>(entity =>
+            {
+                entity.ToTable("Applicant");
+
+                entity.HasIndex(e => e.User, "UQ__Applican__BD20C6F11C4F16BB")
+                    .IsUnique();
+
+                entity.Property(e => e.ApplicantId).HasColumnName("ApplicantID");
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Mobile)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Surname)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.ResumeNavigation)
+                    .WithMany(p => p.Applicants)
+                    .HasForeignKey(d => d.Resume)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Applicant_Resume");
+
+                entity.HasOne(d => d.UserNavigation)
+                    .WithOne(p => p.Applicant)
+                    .HasForeignKey<Applicant>(d => d.User)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Applicant_AspNetUsers");
+            });
+
             modelBuilder.Entity<AspNetRole>(entity =>
             {
                 entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
@@ -122,6 +172,82 @@ namespace JobApplicationSystem.Data
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserTokens)
                     .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<Company>(entity =>
+            {
+                entity.ToTable("Company");
+
+                entity.Property(e => e.CompanyId).HasColumnName("CompanyID");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Location)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Employer>(entity =>
+            {
+                entity.ToTable("Employer");
+
+                entity.HasIndex(e => e.User, "UQ__Employer__BD20C6F15E7C9309")
+                    .IsUnique();
+
+                entity.Property(e => e.EmployerId).HasColumnName("EmployerID");
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Mobile)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Surname)
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CompanyNavigation)
+                    .WithMany(p => p.Employers)
+                    .HasForeignKey(d => d.Company)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Employer_Company");
+
+                entity.HasOne(d => d.UserNavigation)
+                    .WithOne(p => p.Employer)
+                    .HasForeignKey<Employer>(d => d.User)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Employer_AspNetUsers");
+            });
+
+            modelBuilder.Entity<Resume>(entity =>
+            {
+                entity.ToTable("Resume");
+
+                entity.Property(e => e.ResumeId).HasColumnName("ResumeID");
+
+                entity.Property(e => e.ResumeName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

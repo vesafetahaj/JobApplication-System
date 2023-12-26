@@ -1,0 +1,168 @@
+﻿﻿@using System.Security.Claims
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Employer Dashboard";
+    Layout = null;
+    bool employerIdExists = ViewBag.EmployerId != null && ViewBag.EmployerId != 0;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - WorkLoop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="icon" href="~/images/workloop-high-resolution-logo-transparent.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="~/JobApplicationSystem.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <style>
+        #mySidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #4d331f;
+            overflow-x: hidden;
+            padding-top: 60px;
+            transition: 0.5s;
+        }
+
+            #mySidenav a {
+                padding: 28px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #fff;
+                display: block;
+                transition: 0.3s;
+                font-family: 'Roboto Condensed', sans-serif;
+                font-weight: bold;
+            }
+
+            #mySidenav img {
+                width: 38px;
+                padding-right: 10px;
+            }
+
+            #mySidenav a:hover {
+                color: #e5f3fd;
+            }
+
+            #mySidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+        #main {
+            transition: margin-left .5s;
+            padding-left: 50px;
+            margin-top: -15px;
+            padding-right: 50px;
+        }
+
+            #main > h1 {
+                font-family: 'Anek Gurmukhi', sans-serif;
+                color: #4d331f;
+                display: inline;
+                margin-left: 10px;
+            }
+
+        #menu {
+            width: 30px;
+            cursor: pointer;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        #logo {
+            transition: transform 0.3s ease;
+            width: 100px;
+            margin-left: 40px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a asp-controller="Home" asp-action="Index"><img src="~/images/workloop-high-resolution-logo-transparent.png" alt="" id="logo"></a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <div id="mySidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+
+        <a asp-area="" asp-controller="Employer" asp-action="Index"><img src="~/images/home.png" id="home">Home</a>
+        @if (employerIdExists)
+        {
+            <a asp-area="" asp-controller="Employer" asp-action="Details"><img src="~/images/profile.png">Profile</a>
+        }
+        else
+        {
+            <a asp-area="" asp-controller="Employer" asp-action="PersonalInfo"><img src="~/images/profile.png">Profile</a>
+        }
+   
+
+    </div>
+    <span onclick="openNav()"><img src="~/images/list.png" alt="" srcset="" id="menu"></span>
+    <div id="main">
+        @RenderBody()
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("logo").style.transform = "translateX(250px)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            document.getElementById("logo").style.transform = "translateX(0)";
+        }
+
+    </script>
+
+    @RenderSection("Scripts", required: false)
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</body>
+</html>
