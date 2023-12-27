@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Numerics;
 using System.Security.Claims;
 
 namespace JobApplicationSystem.Controllers
@@ -66,6 +67,92 @@ namespace JobApplicationSystem.Controllers
 
             return View(employer);
         }
+        [HttpGet]
+        public async Task<IActionResult> EditPersonalInfo()
+        {
+            try
+            {
+                string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
+
+                if (employer != null)
+                {
+                    var companies = _companyService.GetCompaniesAsync().Result;
+                    var companyList = new SelectList(companies, "CompanyId", "Name");
+
+                    ViewData["CompanyList"] = companyList;
+
+                    return View(employer);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPersonalInfo([Bind("EmployerId,Name,Surname,Email,Mobile,Address,Image,Company,User")] Employer employer)
+        {
+            if (string.IsNullOrWhiteSpace(employer.Name))
+            {
+                ModelState.AddModelError("Name", "Name is required.");
+            }
+            if (string.IsNullOrWhiteSpace(employer.Surname))
+            {
+                ModelState.AddModelError("Surname", "Surname is required.");
+            }
+            if (string.IsNullOrWhiteSpace(employer.Email))
+            {
+                ModelState.AddModelError("Email", "Email is required.");
+            }
+
+            if (string.IsNullOrWhiteSpace(employer.Mobile))
+            {
+                ModelState.AddModelError("Mobile", "Mobile is required.");
+            }
+            if (string.IsNullOrWhiteSpace(employer.Address))
+            {
+                ModelState.AddModelError("Address", "Address is required.");
+            }
+
+            if (employer.Company == null)
+            {
+                ModelState.AddModelError("Company", "Company is required.");
+            }
+            if (string.IsNullOrWhiteSpace(employer.Image))
+            {
+                ModelState.AddModelError("Image", "Image is required.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var companiesForView = _companyService.GetCompaniesAsync().Result;
+                var companyListForView = new SelectList(companiesForView, "CompanyId", "Name");
+                ViewData["CompanyList"] = companyListForView;
+
+                return View(employer);
+            }
+
+            employer.User = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (await _employerService.EditPersonalInfoAsync(employer))
+            {
+                return RedirectToAction("Details", new { id = employer.EmployerId });
+            }
+
+            var companies = _companyService.GetCompaniesAsync().Result;
+            var companyList = new SelectList(companies, "CompanyId", "Name");
+            ViewData["CompanyList"] = companyList;
+
+            return View(employer);
+        }
+
 
         public ActionResult Index()
         {

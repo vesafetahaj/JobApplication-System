@@ -13,5 +13,6 @@ namespace JobApplicationSystem.BAL.Services
         Task<bool> SavePersonalInfoAsync(Employer employer);
         bool HasProvidedPersonalInfo(string userId);
         Task<Employer> GetEmployerByIdAsync(int employerId);
+        Task<bool> EditPersonalInfoAsync(Employer employer);
     }
 }

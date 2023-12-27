@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Applicant Dashboard";
     Layout = null;
+    bool applicantIdExists = ViewBag.ApplicantId != null && ViewBag.ApplicantId != 0;
 
 }
 <!DOCTYPE html>
@@ -38,7 +39,7 @@
             #mySidenav a {
                 padding: 28px 8px 8px 32px;
                 text-decoration: none;
-                font-size: 25px;
+                font-size: 18px;
                 color: #fff;
                 display: block;
                 transition: 0.3s;
@@ -47,7 +48,7 @@
             }
 
             #mySidenav img {
-                width: 38px;
+                width: 32px;
                 padding-right: 10px;
             }
 
@@ -125,7 +126,14 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
         <a asp-area="" asp-controller="Applicant" asp-action="Index"><img src="~/images/home.png" id="home">Home</a>
-        <a asp-area="" asp-controller="Applicant" asp-action="Profile"><img src="~/images/profile.png">Profile</a>
+        @if (applicantIdExists)
+        {
+            <a asp-area="" asp-controller="Applicant" asp-action="Details"><img src="~/images/profile.png">Profile</a>
+        }
+        else
+        {
+            <a asp-area="" asp-controller="Applicant" asp-action="PersonalInfo"><img src="~/images/profile.png">Profile</a>
+        }
 
     </div>
     <span onclick="openNav()"><img src="~/images/list.png" alt="" srcset="" id="menu"></span>

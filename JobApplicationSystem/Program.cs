@@ -24,9 +24,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IEmployerService, EmployerService>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
+builder.Services.AddScoped<IApplicantService, ApplicantService>();
 builder.Services.AddScoped<IRoleRepository<AspNetRole>, RoleRepository>();
 builder.Services.AddScoped<IEmployerRepository<Employer>, EmployerRepository>();
 builder.Services.AddScoped<ICompanyRepository<Company>, CompanyRepository>();
+builder.Services.AddScoped<IApplicantRepository<Applicant>, ApplicantRepository>();
 
 
 

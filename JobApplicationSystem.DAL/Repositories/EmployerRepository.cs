@@ -48,5 +48,18 @@ namespace JobApplicationSystem.DAL.Repositories
         {
             return _dbContext.Employers.Any(e => e.User == userId && e.Name != null && e.Surname != null);
         }
+        public async Task<bool> EditPersonalInfoAsync(Employer employer)
+        {
+            try
+            {
+                _dbContext.Entry(employer).State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

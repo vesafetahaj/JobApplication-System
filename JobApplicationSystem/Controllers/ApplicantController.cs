@@ -1,21 +1,34 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using JobApplicationSystem.BAL.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace JobApplicationSystem.Controllers
 {
     [Authorize(Roles = "Applicant")]
     public class ApplicantController : Controller
     {
+        private readonly IApplicantService _applicantService;
+        public ApplicantController(IApplicantService applicantService)
+        {
+            applicantService = _applicantService;
+           
+        }
+        [HttpGet]
+        public async Task<IActionResult> Details()
+        {
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var applicant = await _applicantService.GetApplicantDetailsAsync(loggedInUserId);
+            return applicant != null ? View(applicant) : (IActionResult)NotFound();
+        }
         // GET: ApplicantController
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Profile()
-        {
-            return View();
-        }
+        
         // GET: ApplicantController/Details/5
         public ActionResult Details(int id)
         {

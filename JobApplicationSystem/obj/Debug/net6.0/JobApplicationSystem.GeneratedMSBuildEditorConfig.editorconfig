@@ -184,16 +184,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/LENOVO/Desktop/Faza 4 - Software Design/JobApplicationSystem/Views/Applicant/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwbGljYW50XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/LENOVO/Desktop/Faza 4 - Software Design/JobApplicationSystem/Views/Applicant/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwbGljYW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/LENOVO/Desktop/Faza 4 - Software Design/JobApplicationSystem/Views/Applicant/Profile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwbGljYW50XFByb2ZpbGUuY3NodG1s
+[C:/Users/LENOVO/Desktop/Faza 4 - Software Design/JobApplicationSystem/Views/Applicant/PersonalInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwbGljYW50XFBlcnNvbmFsSW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LENOVO/Desktop/Faza 4 - Software Design/JobApplicationSystem/Views/Employer/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Desktop/Faza 4 - Software Design/JobApplicationSystem/Views/Employer/EditPersonalInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRWRpdFBlcnNvbmFsSW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LENOVO/Desktop/Faza 4 - Software Design/JobApplicationSystem/Views/Employer/Index.cshtml]

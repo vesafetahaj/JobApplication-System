@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/+5QKD+JDuj5OQJRkAaAV+YulcKmUqQ7sZFn6H4i2Zc=",
+  "Hash": "Abz3PuQ6et+0yCjfpaV5qSY+Y4vhTnVQ86U/0syAsrY=",
   "Source": "JobApplicationSystem",
   "BasePath": "_content/JobApplicationSystem",
   "Mode": "Default",
@@ -1222,6 +1222,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\mixkit-open-office-space-914-medium.mp4"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\picprofile.png",
+      "SourceId": "JobApplicationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\",
+      "BasePath": "_content/JobApplicationSystem",
+      "RelativePath": "images/picprofile.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\picprofile.png"
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\profile.png",
