@@ -52,6 +52,10 @@ namespace JobApplicationSystem.DAL.Data
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Education)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Email)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -71,12 +75,6 @@ namespace JobApplicationSystem.DAL.Data
                 entity.Property(e => e.Surname)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.ResumeNavigation)
-                    .WithMany(p => p.Applicants)
-                    .HasForeignKey(d => d.Resume)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Applicant_Resume");
 
                 entity.HasOne(d => d.UserNavigation)
                     .WithOne(p => p.Applicant)

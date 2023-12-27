@@ -13,5 +13,6 @@ namespace JobApplicationSystem.DAL.Contracts
         Task<bool> SaveApplicantAsync(Applicant applicant);
         bool HasProvidedPersonalInfo(string userId);
         Task<Applicant> GetApplicantByIdAsync(int applicantId);
+        Task<bool> EditPersonalInfoAsync(Applicant applicant);
     }
 }

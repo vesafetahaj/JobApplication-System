@@ -19,6 +19,11 @@
         </div>
 
         <div class="form-group">
+            <label asp-for="Education"></label>
+            <input asp-for="Education" class="form-control"/>
+        </div>
+
+        <div class="form-group">
             <label asp-for="Email"></label>
             <input asp-for="Email" class="form-control" value="@User.Identity.Name" readonly />
         </div>

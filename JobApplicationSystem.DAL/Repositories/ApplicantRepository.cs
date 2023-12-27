@@ -22,7 +22,6 @@ namespace JobApplicationSystem.DAL.Repositories
         {
             return await _dbContext.Applicants
                 .Include(e => e.UserNavigation)
-                .Include(e => e.ResumeNavigation)
                 .FirstOrDefaultAsync(m => m.User == userId);
         }
         public async Task<bool> SaveApplicantAsync(Applicant applicant)
@@ -41,12 +40,24 @@ namespace JobApplicationSystem.DAL.Repositories
         public async Task<Applicant> GetApplicantByIdAsync(int applicantId)
         {
             return await _dbContext.Applicants
-                .Include(a => a.ResumeNavigation)
                 .FirstOrDefaultAsync(a => a.ApplicantId == applicantId);
         }
         public bool HasProvidedPersonalInfo(string userId)
         {
             return _dbContext.Applicants.Any(e => e.User == userId && e.Name != null && e.Surname != null);
+        }
+        public async Task<bool> EditPersonalInfoAsync(Applicant applicant)
+        {
+            try
+            {
+                _dbContext.Entry(applicant).State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

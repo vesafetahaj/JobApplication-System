@@ -34,5 +34,9 @@ namespace JobApplicationSystem.BAL.Services
         {
             return await _applicantRepository.SaveApplicantAsync(applicant);
         }
+        public async Task<bool> EditPersonalInfoAsync(Applicant applicant)
+        {
+            return await _applicantRepository.EditPersonalInfoAsync(applicant);
+        }
     }
 }

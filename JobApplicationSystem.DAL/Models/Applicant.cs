@@ -11,11 +11,10 @@ namespace JobApplicationSystem.DAL.Models
         public string? Email { get; set; }
         public string? Mobile { get; set; }
         public string? Address { get; set; }
-        public int? Resume { get; set; }
         public string? Image { get; set; }
         public string? User { get; set; }
+        public string? Education { get; set; }
 
-        public virtual Resume? ResumeNavigation { get; set; }
         public virtual AspNetUser? UserNavigation { get; set; }
     }
 }
