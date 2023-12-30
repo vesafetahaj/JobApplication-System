@@ -17,6 +17,7 @@ namespace JobApplicationSystem.DAL.Data
         {
         }
 
+        public virtual DbSet<Administrator> Administrators { get; set; } = null!;
         public virtual DbSet<Applicant> Applicants { get; set; } = null!;
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; } = null!;
         public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; } = null!;
@@ -39,6 +40,48 @@ namespace JobApplicationSystem.DAL.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Administrator>(entity =>
+            {
+                entity.HasKey(e => e.AdminId);
+
+                entity.ToTable("Administrator");
+
+                entity.HasIndex(e => e.User, "IX_Administrator")
+                    .IsUnique();
+
+                entity.Property(e => e.AdminId).HasColumnName("AdminID");
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Mobile)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Surname)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.UserNavigation)
+                    .WithOne(p => p.Administrator)
+                    .HasForeignKey<Administrator>(d => d.User)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Administrator_AspNetUsers1");
+            });
+
             modelBuilder.Entity<Applicant>(entity =>
             {
                 entity.ToTable("Applicant");
@@ -204,6 +247,10 @@ namespace JobApplicationSystem.DAL.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Company)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -223,12 +270,6 @@ namespace JobApplicationSystem.DAL.Data
                 entity.Property(e => e.Surname)
                     .HasMaxLength(40)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.CompanyNavigation)
-                    .WithMany(p => p.Employers)
-                    .HasForeignKey(d => d.Company)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Employer_Company");
 
                 entity.HasOne(d => d.UserNavigation)
                     .WithOne(p => p.Employer)

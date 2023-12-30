@@ -12,10 +12,9 @@ namespace JobApplicationSystem.DAL.Models
         public string? Mobile { get; set; }
         public string? Address { get; set; }
         public string? Image { get; set; }
-        public int? Company { get; set; }
         public string? User { get; set; }
+        public string? Company { get; set; }
 
-        public virtual Company? CompanyNavigation { get; set; }
         public virtual AspNetUser? UserNavigation { get; set; }
     }
 }

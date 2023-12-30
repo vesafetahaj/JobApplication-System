@@ -37,7 +37,7 @@ namespace JobApplicationSystem.Controllers
                 return RedirectToAction(nameof(Details));
             }
 
-            return View("PersonalInfo");
+            return View();
         }
 
 

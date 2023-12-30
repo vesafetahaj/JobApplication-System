@@ -22,7 +22,6 @@ namespace JobApplicationSystem.DAL.Repositories
         {
             return await _dbContext.Employers
                 .Include(e => e.UserNavigation)
-                .Include(e => e.CompanyNavigation)
                 .FirstOrDefaultAsync(m => m.User == userId);
         }
         public async Task<bool> SaveEmployerAsync(Employer employer)
@@ -41,7 +40,6 @@ namespace JobApplicationSystem.DAL.Repositories
         public async Task<Employer> GetEmployerByIdAsync(int employerId)
         {
             return await _dbContext.Employers
-                .Include(e => e.CompanyNavigation)
                 .FirstOrDefaultAsync(e => e.EmployerId == employerId);
         }
         public bool HasProvidedPersonalInfo(string userId)

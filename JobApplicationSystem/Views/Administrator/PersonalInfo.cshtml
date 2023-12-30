@@ -1,0 +1,44 @@
+﻿@model JobApplicationSystem.DAL.Models.Administrator
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Provide Personal Information</h2>
+
+
+@if (Model == null || Model.Address == null)
+{
+    <form asp-action="PersonalInfo">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Surname"></label>
+            <input asp-for="Surname" class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" value="@User.Identity.Name" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Mobile"></label>
+            <input asp-for="Mobile" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Address"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Image"></label>
+            <input type="file" asp-for="Image" class="form-control" />
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+}

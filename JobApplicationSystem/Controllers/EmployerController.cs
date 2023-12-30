@@ -13,11 +13,9 @@ namespace JobApplicationSystem.Controllers
     public class EmployerController : Controller
     {
         private readonly IEmployerService _employerService;
-        private readonly ICompanyService _companyService;
-        public EmployerController(IEmployerService employerService, ICompanyService companyService)
+        public EmployerController(IEmployerService employerService)
         {
             _employerService = employerService;
-            _companyService = companyService;
         }
 
         [HttpGet]
@@ -33,17 +31,13 @@ namespace JobApplicationSystem.Controllers
         {
             string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
 
             if (_employerService.HasProvidedPersonalInfo(loggedInUserId))
             {
                 return RedirectToAction(nameof(Details));
             }
 
-            var companies = _companyService.GetCompaniesAsync().Result;
-            var companyList = new SelectList(companies, "CompanyId", "Name");
-
-            ViewData["CompanyList"] = companyList;
+          
 
             return View();
         }
@@ -61,9 +55,7 @@ namespace JobApplicationSystem.Controllers
                 return RedirectToAction("Details", new { id = employer.EmployerId });
             }
 
-            var companies = _companyService.GetCompaniesAsync().Result;
-            var companyList = new SelectList(companies, "CompanyId", "Name");
-            ViewData["CompanyList"] = companyList;
+            
 
             return View(employer);
         }
@@ -77,11 +69,6 @@ namespace JobApplicationSystem.Controllers
 
                 if (employer != null)
                 {
-                    var companies = _companyService.GetCompaniesAsync().Result;
-                    var companyList = new SelectList(companies, "CompanyId", "Name");
-
-                    ViewData["CompanyList"] = companyList;
-
                     return View(employer);
                 }
                 else
@@ -120,11 +107,11 @@ namespace JobApplicationSystem.Controllers
             {
                 ModelState.AddModelError("Address", "Address is required.");
             }
-
-            if (employer.Company == null)
+            if (string.IsNullOrWhiteSpace(employer.Company))
             {
                 ModelState.AddModelError("Company", "Company is required.");
             }
+
             if (string.IsNullOrWhiteSpace(employer.Image))
             {
                 ModelState.AddModelError("Image", "Image is required.");
@@ -132,9 +119,7 @@ namespace JobApplicationSystem.Controllers
 
             if (!ModelState.IsValid)
             {
-                var companiesForView = _companyService.GetCompaniesAsync().Result;
-                var companyListForView = new SelectList(companiesForView, "CompanyId", "Name");
-                ViewData["CompanyList"] = companyListForView;
+               
 
                 return View(employer);
             }
@@ -146,9 +131,7 @@ namespace JobApplicationSystem.Controllers
                 return RedirectToAction("Details", new { id = employer.EmployerId });
             }
 
-            var companies = _companyService.GetCompaniesAsync().Result;
-            var companyList = new SelectList(companies, "CompanyId", "Name");
-            ViewData["CompanyList"] = companyList;
+           
 
             return View(employer);
         }

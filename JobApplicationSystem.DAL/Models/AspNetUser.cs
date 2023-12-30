@@ -29,6 +29,7 @@ namespace JobApplicationSystem.DAL.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
 
+        public virtual Administrator? Administrator { get; set; }
         public virtual Applicant? Applicant { get; set; }
         public virtual Employer? Employer { get; set; }
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }

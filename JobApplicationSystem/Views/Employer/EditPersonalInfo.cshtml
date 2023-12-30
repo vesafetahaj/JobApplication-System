@@ -51,12 +51,10 @@
        
         <div class="form-group">
             <label asp-for="Company"></label>
-            <select asp-for="Company" asp-items="@(ViewData["CompanyList"] as SelectList)" class="form-control">
-                <option value="">Select Company</option>
-            </select>
+            <input asp-for="Company" class="form-control" />
             <span asp-validation-for="Company" class="text-danger"></span>
         </div>
-
+    
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 }

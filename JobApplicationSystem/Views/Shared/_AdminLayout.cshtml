@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Admin Dashboard";
     Layout = null;
-    //bool adminIdExists = ViewBag.AdminId != null && ViewBag.AdminId != 0;
+    bool adminIdExists = ViewBag.AdminId != null && ViewBag.AdminId != 0;
 
 }
 <!DOCTYPE html>
@@ -114,6 +114,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a asp-controller="Home" asp-action="Index"><img src="~/images/workloop-high-resolution-logo-transparent.png" alt="" id="logo"></a>
+               
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
                     <partial name="_LoginPartial" />
                 </div>
@@ -125,8 +126,14 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
         <a asp-area="" asp-controller="Administrator" asp-action="Index"><img src="~/images/home.png" id="home">Home</a>
-        <a asp-area="" asp-controller="Administrator" asp-action="Profile"><img src="~/images/profile.png">Profile</a>
-      
+        @if (adminIdExists)
+        {
+            <a asp-area="" asp-controller="Administrator" asp-action="Details" asp-route-id="@Model.AdminId"><img src="~/images/profile.png">Profile</a>
+        }
+        else
+        {
+            <a asp-area="" asp-controller="Administrator" asp-action="PersonalInfo"><img src="~/images/profile.png">Profile</a>
+        }
         <a asp-area="" asp-controller="Roles" asp-action="Index"><img src="~/images/roles.png">Roles</a>
     </div>
     <span onclick="openNav()"><img src="~/images/list.png" alt="" srcset="" id="menu"></span>
