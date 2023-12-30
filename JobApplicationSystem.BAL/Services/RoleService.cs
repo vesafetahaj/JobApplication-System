@@ -13,14 +13,14 @@ namespace JobApplicationSystem.BAL.Services
 {
     public class RoleService : IRoleService
     {
-        private readonly IRoleRepository<AspNetRole> _repository;
-        public RoleService(IRoleRepository<AspNetRole> _repository)
+        private readonly IRoleRepository<AspNetRole> _rolerepository;
+        public RoleService(IRoleRepository<AspNetRole> rolerepository)
         {
-            _repository = _repository;
+            _rolerepository = rolerepository;
         }
         public List<AspNetRole> GetAllRoles()
         {
-            return _repository.GetAll();
+            return _rolerepository.GetAll();
         }
 
         

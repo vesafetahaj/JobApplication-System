@@ -8,8 +8,8 @@ namespace JobApplicationSystem.Controllers
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _manager;
-        private readonly RoleService _roleService;
-        public RolesController(RoleManager<IdentityRole> roleManager, RoleService roleService)
+        private readonly IRoleService _roleService;
+        public RolesController(RoleManager<IdentityRole> roleManager, IRoleService roleService)
         {
             _manager = roleManager;
             _roleService = roleService;
