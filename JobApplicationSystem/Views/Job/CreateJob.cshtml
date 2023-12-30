@@ -1,0 +1,87 @@
+﻿@model JobApplicationSystem.DAL.Models.Job
+
+
+@{
+    Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+}
+<div style="width: 80%; margin: 0 auto; background-color: #DBD6D2; padding: 20px; border-radius: 10px;font-family: 'Anek Gurmukhi', sans-serif;">
+    <h3 class="text-center">Post a New Job</h3>
+    <form asp-action="CreateJob">
+
+        <div class="row mr-lg-5 ml-lg-5 mb-3">
+            <div class="col-md-6 pt-3">
+                <label asp-for="Title" style="font-weight: 600">Job Title</label>
+                <input asp-for="Title" type="text" class="form-control" placeholder="Ex. Web Developer" />
+            </div>
+            <div class="col-md-6 pt-3">
+                <label asp-for="NumberPosition" style="font-weight: 600">Number of Post</label>
+                <input asp-for="NumberPosition" type="number" class="form-control" placeholder="Enter number of position" />
+            </div>
+        </div>
+        <div class="row mr-lg-5 ml-lg-5 mb-3">
+            <div class="col-md-12 pt-3">
+                <label asp-for="Description" style="font-weight: 600">Description</label>
+                <input asp-for="Description" class="form-control" placeholder="Enter Job Description" />
+            </div>
+        </div>
+        <div class="row mr-lg-5 ml-lg-5 mb-3">
+            <div class="col-md-6 pt-3">
+                <label asp-for="Education" style="font-weight: 600">Education Required</label>
+                <input asp-for="Education" type="text" class="form-control" placeholder="Ex. BSc, MSc, PhD" />
+            </div>
+            <div class="col-md-6 pt-3">
+                <label asp-for="Experience" style="font-weight: 600">Experience Required</label>
+                <input asp-for="Experience" type="text" class="form-control" placeholder="Ex. 2 years" />
+            </div>
+        </div>
+        <div class="row mr-lg-5 ml-lg-5 mb-3">
+            <div class="col-md-6 pt-3">
+                <label asp-for="Salary" style="font-weight: 600">Salary</label>
+                <input asp-for="Salary" type="text" class="form-control" placeholder="Ex. 2500/Month" />
+            </div>
+            <div class="col-md-6 pt-3">
+                <label asp-for="LastDateToApply" style="font-weight: 600">Last Date To Apply</label>
+                <input asp-for="LastDateToApply" type="date" class="form-control"/>
+            </div>
+        </div>
+        <div class="row mr-lg-5 ml-lg-5 mb-3">
+            <div class="col-md-12 pt-3">
+                <label asp-for="Address" style="font-weight: 600">Address</label>
+                <input asp-for="Address" class="form-control" placeholder="Enter Work Location" />
+            </div>
+
+        </div>
+        <div class="row mr-lg-5 ml-lg-5 mb-3">
+            <div class="col-md-6 pt-3">
+                <label asp-for="Company" style="font-weight: 600">Company Name</label>
+                <input asp-for="Company" type="text" class="form-control" placeholder="Enter company name" />
+            </div>
+            <div class="col-md-6 pt-3">
+                <label asp-for="CompanyLogo" style="font-weight: 600">Company Logo</label>
+                <input asp-for="CompanyLogo" type="file" class="form-control" />
+            </div>
+        </div>
+        <div class="row mr-lg-5 ml-lg-5">
+            <div class="col-md-6 pt-3">
+                <button type="submit" class="btn btn-primary">Post</button>
+            </div>
+        </div>
+    </form>
+</div>
+<style>
+    
+    .btn-primary {
+        background-color: #5A4D46; 
+        border-color: #5A4D46;
+        width: 100px;
+        text-transform: uppercase;
+        font-size: 20px;
+        padding-top: 12px;
+    }
+
+        .btn-primary:hover {
+            background-color: #483F38; 
+            border-color: #483F38;
+        }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">

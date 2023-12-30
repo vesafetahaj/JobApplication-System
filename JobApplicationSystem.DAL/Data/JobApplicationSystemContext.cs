@@ -27,6 +27,7 @@ namespace JobApplicationSystem.DAL.Data
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
         public virtual DbSet<Employer> Employers { get; set; } = null!;
+        public virtual DbSet<Job> Jobs { get; set; } = null!;
         public virtual DbSet<Resume> Resumes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -276,6 +277,43 @@ namespace JobApplicationSystem.DAL.Data
                     .HasForeignKey<Employer>(d => d.User)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Employer_AspNetUsers");
+            });
+
+            modelBuilder.Entity<Job>(entity =>
+            {
+                entity.ToTable("Job");
+
+                entity.Property(e => e.Address).HasMaxLength(450);
+
+                entity.Property(e => e.Company)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompanyLogo)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description).HasMaxLength(450);
+
+                entity.Property(e => e.Education).HasMaxLength(450);
+
+                entity.Property(e => e.Experience).HasMaxLength(450);
+
+                entity.Property(e => e.LastDateToApply).HasColumnType("date");
+
+                entity.Property(e => e.Salary)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.EmployerNavigation)
+                    .WithMany(p => p.Jobs)
+                    .HasForeignKey(d => d.Employer)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Job_Employer1");
             });
 
             modelBuilder.Entity<Resume>(entity =>

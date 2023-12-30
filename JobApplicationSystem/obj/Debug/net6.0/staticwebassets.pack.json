@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\files\\CV - ENG.docx"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\businessman.png",
+      "PackagePath": "staticwebassets\\images\\businessman.png"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\home.png",
       "PackagePath": "staticwebassets\\images\\home.png"
     },
