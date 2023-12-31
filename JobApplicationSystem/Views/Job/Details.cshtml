@@ -6,7 +6,7 @@
 
 <style>
     .details-container {
-        width: 50%;
+        width: 70%;
         margin: 20px auto;
         padding: 20px;
         background-color: #f8f9fa;
@@ -21,7 +21,7 @@
     }
 
         .logo-container img {
-            width: 20%;
+            width: 15%;
             margin-right: 20px;
         }
 
@@ -99,6 +99,7 @@
     <div class="text-center mt-4">
         <a href="@Url.Action("EditJob", new { id = Model.JobId })" class="btn btn-primary">Edit</a>
         <a href="@Url.Action("DeleteJob", new { id = Model.JobId })" class="btn btn-danger ml-2">Delete</a>
+        <a href="@Url.Action("Index")" class="btn btn-secondary ml-2">Go Back</a>
     </div>
 </div>
 <link href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using JobApplicationSystem.DAL.Contracts;
 using JobApplicationSystem.DAL.Models;
@@ -39,5 +40,26 @@ namespace JobApplicationSystem.BAL.Services
         {
             return await _jobRepository.DeleteJobAsync(jobId);
         }
+
+        public async Task<IEnumerable<Job>> GetJobsByEmployerIdAsync(int employerId)
+        {
+            return await _jobRepository.GetJobsByEmployerIdAsync(employerId);
+        }
+
+        public async Task<IEnumerable<Job>> SearchJobsAsync(string searchQuery)
+        {
+            if (searchQuery == null)
+            {
+
+                return Enumerable.Empty<Job>();
+            }
+
+            var allJobs = await GetAllJobsAsync();
+
+            var searchResults = allJobs.Where(job => job.Title.Contains(searchQuery)
+            || job.Company.Contains(searchQuery));
+            return searchResults.ToList();
+        }
+
     }
 }

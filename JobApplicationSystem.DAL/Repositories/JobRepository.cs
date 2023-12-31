@@ -68,6 +68,11 @@ namespace JobApplicationSystem.DAL.Repositories
             await _dbcontext.SaveChangesAsync();
             return true;
         }
-
+        public async Task<IEnumerable<Job>> GetJobsByEmployerIdAsync(int employerId)
+        {
+            return await _dbcontext.Jobs
+                .Where(j => j.Employer == employerId)
+                .ToListAsync();
+        }
     }
 }

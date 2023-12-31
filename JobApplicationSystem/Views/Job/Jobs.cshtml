@@ -1,0 +1,153 @@
+﻿@model List<JobApplicationSystem.DAL.Models.Job>
+
+@{
+    Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+}
+
+<style>
+    * {
+        font-family: 'Anek Gurmukhi', sans-serif;
+    }
+
+    .job-container {
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .job-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+        .job-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    .company-logo {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .company-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .company-name {
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .job-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .job-description {
+        margin-bottom: 10px;
+    }
+
+    .job-details {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+        .job-details span {
+            color: #777;
+        }
+
+    .search-bar {
+        margin-bottom: 20px;
+    }
+
+    .search-container {
+        display: flex;
+        position: relative;
+    }
+
+    #search {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #search-btn {
+        background-color: #5A4D46;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        height: 45px;
+        width:40px;
+    }
+
+        #search-btn:hover {
+            background-color: #483F38;
+        }
+</style>
+
+<h1>All jobs posts</h1>
+<hr />
+
+<div class="search-bar">
+    <form action="@Url.Action("Search", "Job")" method="get" class="search-container">
+        <input type="text" id="search" name="searchQuery" placeholder="Search jobs by job title or company...">
+        <button type="submit" id="search-btn">
+            <i class="fa fa-search"></i>
+        </button>
+    </form>
+</div>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="job-container row">
+        @foreach (var job in Model)
+        {
+            <div class="col-md-4">
+                <div class="job-card">
+                    <div class="company-info">
+                        <img src="~/images/@job.CompanyLogo" alt="Company Logo" class="company-logo" />
+                        <div class="company-name" style="padding-left: 30px;">
+                            <h4 style="font-weight: 900">@job.Company</h4>
+                        </div>
+                    </div>
+                    <div class="job-title">@job.Title</div>
+                    <div class="job-description">@job.Description</div>
+                    <div class="job-details">
+                        <span>@job.Salary</span>
+                        <span>Last Date to Apply: @job.LastDateToApply?.ToShortDateString()</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No jobs.</p>
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">

@@ -37,12 +37,20 @@
       "PackagePath": "staticwebassets\\images\\8hO4Ijb9_400x400.jpg"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\briefcase.png",
+      "PackagePath": "staticwebassets\\images\\briefcase.png"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\businessman.png",
       "PackagePath": "staticwebassets\\images\\businessman.png"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\home.png",
       "PackagePath": "staticwebassets\\images\\home.png"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\list (1).png",
+      "PackagePath": "staticwebassets\\images\\list (1).png"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\list.png",
@@ -67,6 +75,10 @@
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\roles.png",
       "PackagePath": "staticwebassets\\images\\roles.png"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\starlabs.svg",
+      "PackagePath": "staticwebassets\\images\\starlabs.svg"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\suitcase.png",

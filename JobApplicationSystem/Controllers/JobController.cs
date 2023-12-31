@@ -21,8 +21,18 @@ namespace JobApplicationSystem.Controllers
         }
         public async Task<ActionResult> Index()
         {
-            var jobs = await _jobService.GetAllJobsAsync();
-            return View(jobs);
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
+
+            if (employer != null)
+            {
+                var jobs = await _jobService.GetJobsByEmployerIdAsync(employer.EmployerId);
+                return View(jobs);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Employer");
+            }
         }
         public async Task<ActionResult> Details(int id)
         {
@@ -140,5 +150,19 @@ namespace JobApplicationSystem.Controllers
                 return NotFound();
             }
         }
+        public async Task<ActionResult> Jobs()
+        {
+            var allJobs = await _jobService.GetAllJobsAsync();
+            return View("Jobs", allJobs);
+        }
+        public async Task<ActionResult> Search(string searchQuery)
+        {
+            var searchResults = await _jobService.SearchJobsAsync(searchQuery);
+            var searchResultsList = searchResults.ToList();
+
+            return View("Jobs", searchResultsList);
+        }
+
+
     }
 }

@@ -14,5 +14,7 @@ namespace JobApplicationSystem.BAL.Services
         Task<Job> GetJobByIdAsync(int jobId);
         Task<bool> UpdateJobAsync(int jobId, Job updatedJob);
         Task<bool> DeleteJobAsync(int jobId);
+        Task<IEnumerable<Job>> GetJobsByEmployerIdAsync(int employerId);
+        Task<IEnumerable<Job>> SearchJobsAsync(string searchTerm);
     }
 }

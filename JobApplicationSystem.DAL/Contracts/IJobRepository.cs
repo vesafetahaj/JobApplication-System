@@ -20,5 +20,6 @@ namespace JobApplicationSystem.DAL.Contracts
 
         // Delete
         Task<bool> DeleteJobAsync(int jobId);
+        Task<IEnumerable<Job>> GetJobsByEmployerIdAsync(int employerId);
     }
 }
