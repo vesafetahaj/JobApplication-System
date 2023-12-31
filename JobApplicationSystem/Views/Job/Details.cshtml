@@ -1,0 +1,104 @@
+﻿@model JobApplicationSystem.DAL.Models.Job
+
+@{
+    Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+}
+
+<style>
+    .details-container {
+        width: 50%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        font-family: 'Anek Gurmukhi', sans-serif;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+        .logo-container img {
+            width: 20%;
+            margin-right: 20px;
+        }
+
+    .btn-primary {
+        background-color: #5A4D46;
+        border-color: #5A4D46;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #483F38;
+            border-color: #483F38;
+        }
+
+    .btn-danger {
+        background-color: #FF5A5F;
+        border-color: #FF5A5F;
+        color: #fff;
+    }
+
+        .btn-danger:hover {
+            background-color: #E55658;
+            border-color: #E55658;
+        }
+        div h5{
+            font-weight: 600;
+        }
+</style>
+<div class="details-container">
+    <div class="logo-container">
+        <img src="~/images/@Model.CompanyLogo" alt="Company Logo" class="img-fluid rounded-circle" />
+        <h3>@Model.Company</h3>
+    </div>
+
+    <hr />
+    <div>
+        <h5>Job Title</h5>
+        <p>@Model.Title</p>
+    </div>
+    <div>
+        <h5>Description</h5>
+        <p>@Model.Description</p>
+    </div>
+
+    <div>
+        <h5>Education Required</h5>
+        <p>@Model.Education</p>
+    </div>
+
+    <div>
+        <h5>Experience Required</h5>
+        <p>@Model.Experience</p>
+    </div>
+
+    <div>
+        <h5>Number of Positions</h5>
+        <p>@Model.NumberPosition</p>
+    </div>
+
+    <div>
+        <h5>Last Date to Apply</h5>
+        <p>@Model.LastDateToApply?.ToShortDateString()</p>
+    </div>
+
+    <div>
+        <h5>Address</h5>
+        <p>@Model.Address</p>
+    </div>
+
+    <div>
+        <h5>Salary</h5>
+        <p>@Model.Salary</p>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="@Url.Action("EditJob", new { id = Model.JobId })" class="btn btn-primary">Edit</a>
+        <a href="@Url.Action("DeleteJob", new { id = Model.JobId })" class="btn btn-danger ml-2">Delete</a>
+    </div>
+</div>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">

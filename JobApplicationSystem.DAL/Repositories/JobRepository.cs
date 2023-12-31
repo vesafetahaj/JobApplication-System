@@ -33,15 +33,14 @@ namespace JobApplicationSystem.DAL.Repositories
         {
             return await _dbcontext.Jobs.ToListAsync();
         }
-        
+
         public async Task<bool> UpdateJobAsync(int jobId, Job updatedJob)
         {
             var existingJob = await _dbcontext.Jobs.FindAsync(jobId);
-            if(existingJob != null)
-            {
+
+            if (existingJob == null)
                 return false;
-                
-            }
+
             existingJob.Title = updatedJob.Title;
             existingJob.Description = updatedJob.Description;
             existingJob.Education = updatedJob.Education;
@@ -52,11 +51,12 @@ namespace JobApplicationSystem.DAL.Repositories
             existingJob.CompanyLogo = updatedJob.CompanyLogo;
             existingJob.Address = updatedJob.Address;
             existingJob.Employer = updatedJob.Employer;
-            existingJob.Salary = updatedJob.Salary;
 
             await _dbcontext.SaveChangesAsync();
             return true;
         }
+
+
         public async Task<bool> DeleteJobAsync(int jobId)
         {
             var jobToDelete = await _dbcontext.Jobs.FindAsync(jobId);

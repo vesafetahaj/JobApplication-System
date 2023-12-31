@@ -19,39 +19,28 @@ namespace JobApplicationSystem.Controllers
             _jobService = jobService;
             _employerService = employerService;
         }
-        // GET: JobController
         public async Task<ActionResult> Index()
         {
-            var jobs = await _jobService.GetAllJobsAsync(); // Assuming you have an asynchronous method to get all jobs
-            var jobCardViewModels = jobs.Select(job => new Job
+            var jobs = await _jobService.GetAllJobsAsync();
+            return View(jobs);
+        }
+        public async Task<ActionResult> Details(int id)
+        {
+            var job = await _jobService.GetJobByIdAsync(id);
+
+            if (job == null)
             {
-                JobId = job.JobId,
-                Title = job.Title,
-                Description = job.Description,
-                Company = job.Company,
-                LastDateToApply = job.LastDateToApply,
-                Salary = job.Salary
-            }).ToList();
+                return NotFound();
+            }
 
-            return View(jobCardViewModels);
+            return View(job);
         }
-
-        // GET: JobController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: JobController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+       
         public ActionResult CreateJob()
         {
             return View();
         }
-        // POST: JobController/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateJob(Job job)
@@ -86,14 +75,37 @@ namespace JobApplicationSystem.Controllers
             }
         }
 
-        // POST: JobController/Create
+        public async Task<ActionResult> EditJob(int id)
+        {
+            var job = await _jobService.GetJobByIdAsync(id);
+
+            if (job == null)
+            {
+                return NotFound();
+            }
+
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+         
+
+            return View(job);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> EditJob(int id, Job updatedJob)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                bool result = await _jobService.UpdateJobAsync(id, updatedJob);
+
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
             catch
             {
@@ -101,45 +113,31 @@ namespace JobApplicationSystem.Controllers
             }
         }
 
-        // GET: JobController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> DeleteJob(int id)
         {
-            return View();
+            var job = await _jobService.GetJobByIdAsync(id);
+
+            if (job == null)
+            {
+                return NotFound();
+            }
+
+            return View(job);
         }
 
-        // POST: JobController/Edit/5
-        [HttpPost]
+        [HttpPost, ActionName("DeleteJob")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteJobConfirmed(int id)
         {
-            try
+            bool result = await _jobService.DeleteJobAsync(id);
+
+            if (result)
             {
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
-                return View();
-            }
-        }
-
-        // GET: JobController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: JobController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return NotFound();
             }
         }
     }

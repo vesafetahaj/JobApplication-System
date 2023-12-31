@@ -1,0 +1,89 @@
+﻿@model JobApplicationSystem.DAL.Models.Job
+@{
+    Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+}
+<h2>Delete Job</h2>
+
+<p>Are you sure you want to delete this job?</p>
+<div>
+    <h4>Job Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Title
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Title
+        </dd>
+
+        <dt class="col-sm-2">
+            Description
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Description
+        </dd>
+
+        <dt class="col-sm-2">
+            Education
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Education
+        </dd>
+
+        <dt class="col-sm-2">
+            Experience
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Experience
+        </dd>
+
+        <dt class="col-sm-2">
+            Number of Positions
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NumberPosition
+        </dd>
+
+        <dt class="col-sm-2">
+            Last Date to Apply
+        </dt>
+        <dd class="col-sm-10">
+            @Model.LastDateToApply?.ToShortDateString()
+        </dd>
+
+        <dt class="col-sm-2">
+            Company
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Company
+        </dd>
+
+        <dt class="col-sm-2">
+            Company Logo
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CompanyLogo
+        </dd>
+
+        <dt class="col-sm-2">
+            Address
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Address
+        </dd>
+
+        <dt class="col-sm-2">
+            Employer
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Employer
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteJob" asp-route-id="@Model.JobId" method="post">
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
