@@ -51,6 +51,10 @@ namespace JobApplicationSystem.Controllers
             return View();
         }
 
+        public ActionResult UnauthorizedJob()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateJob(Job job)
@@ -99,7 +103,7 @@ namespace JobApplicationSystem.Controllers
 
             if (job.Employer != employer.EmployerId)
             {
-                return Forbid(); 
+                return RedirectToAction(nameof(UnauthorizedJob));
             }
 
             return View(job);
@@ -115,7 +119,7 @@ namespace JobApplicationSystem.Controllers
 
                 if (job.Employer != updatedJob.Employer)
                 {
-                    return Forbid(); 
+                    return RedirectToAction(nameof(UnauthorizedJob)); 
                 }
 
                 bool result = await _jobService.UpdateJobAsync(id, updatedJob);
@@ -149,7 +153,7 @@ namespace JobApplicationSystem.Controllers
 
             if (job.Employer != employer.EmployerId)
             {
-                return Forbid(); 
+                return RedirectToAction(nameof(UnauthorizedJob));
             }
 
             return View(job);
@@ -166,7 +170,7 @@ namespace JobApplicationSystem.Controllers
 
             if (job.Employer != employer.EmployerId)
             {
-                return Forbid(); 
+                return RedirectToAction(nameof(UnauthorizedJob));
             }
 
             bool result = await _jobService.DeleteJobAsync(id);
