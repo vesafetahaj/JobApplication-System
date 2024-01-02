@@ -95,7 +95,12 @@ namespace JobApplicationSystem.Controllers
             }
 
             string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-         
+            var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
+
+            if (job.Employer != employer.EmployerId)
+            {
+                return Forbid(); 
+            }
 
             return View(job);
         }
@@ -106,6 +111,13 @@ namespace JobApplicationSystem.Controllers
         {
             try
             {
+                var job = await _jobService.GetJobByIdAsync(id);
+
+                if (job.Employer != updatedJob.Employer)
+                {
+                    return Forbid(); 
+                }
+
                 bool result = await _jobService.UpdateJobAsync(id, updatedJob);
 
                 if (result)
@@ -132,6 +144,14 @@ namespace JobApplicationSystem.Controllers
                 return NotFound();
             }
 
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
+
+            if (job.Employer != employer.EmployerId)
+            {
+                return Forbid(); 
+            }
+
             return View(job);
         }
 
@@ -139,6 +159,16 @@ namespace JobApplicationSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteJobConfirmed(int id)
         {
+            var job = await _jobService.GetJobByIdAsync(id);
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
+
+            if (job.Employer != employer.EmployerId)
+            {
+                return Forbid(); 
+            }
+
             bool result = await _jobService.DeleteJobAsync(id);
 
             if (result)
@@ -150,6 +180,7 @@ namespace JobApplicationSystem.Controllers
                 return NotFound();
             }
         }
+
         public async Task<ActionResult> Jobs()
         {
             var allJobs = await _jobService.GetAllJobsAsync();

@@ -61,5 +61,6 @@ namespace JobApplicationSystem.BAL.Services
             return searchResults.ToList();
         }
 
+
     }
 }
