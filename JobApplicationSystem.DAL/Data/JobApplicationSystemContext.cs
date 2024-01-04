@@ -19,6 +19,7 @@ namespace JobApplicationSystem.DAL.Data
 
         public virtual DbSet<Administrator> Administrators { get; set; } = null!;
         public virtual DbSet<Applicant> Applicants { get; set; } = null!;
+        public virtual DbSet<Application> Applications { get; set; } = null!;
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; } = null!;
         public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; } = null!;
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
@@ -125,6 +126,32 @@ namespace JobApplicationSystem.DAL.Data
                     .HasForeignKey<Applicant>(d => d.User)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Applicant_AspNetUsers");
+            });
+
+            modelBuilder.Entity<Application>(entity =>
+            {
+                entity.ToTable("Application");
+
+                entity.Property(e => e.ApplicationId).HasColumnName("ApplicationID");
+
+                entity.Property(e => e.Education)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Experience)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.ApplicantNavigation)
+                    .WithMany(p => p.Applications)
+                    .HasForeignKey(d => d.Applicant)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Application_Applicant1");
+
+                entity.HasOne(d => d.JobNavigation)
+                    .WithMany(p => p.Applications)
+                    .HasForeignKey(d => d.Job)
+                    .HasConstraintName("FK_Application_Job1");
             });
 
             modelBuilder.Entity<AspNetRole>(entity =>

@@ -5,6 +5,11 @@ namespace JobApplicationSystem.DAL.Models
 {
     public partial class Applicant
     {
+        public Applicant()
+        {
+            Applications = new HashSet<Application>();
+        }
+
         public int ApplicantId { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
@@ -16,5 +21,6 @@ namespace JobApplicationSystem.DAL.Models
         public string? Education { get; set; }
 
         public virtual AspNetUser? UserNavigation { get; set; }
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }

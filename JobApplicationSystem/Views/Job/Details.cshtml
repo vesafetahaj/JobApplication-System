@@ -2,6 +2,10 @@
 
 @{
     Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+    if (User.IsInRole("Applicant"))
+    {
+        Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+    }
 }
 
 <style>
@@ -97,9 +101,19 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="@Url.Action("EditJob", new { id = Model.JobId })" class="btn btn-primary">Edit</a>
-        <a href="@Url.Action("DeleteJob", new { id = Model.JobId })" class="btn btn-danger ml-2">Delete</a>
-        <a href="@Url.Action("Index")" class="btn btn-secondary ml-2">Go Back</a>
+        @if (User.IsInRole("Employer")){
+
+            <a href="@Url.Action("EditJob", new { id = Model.JobId })" class="btn btn-primary">Edit</a>
+            <a href="@Url.Action("DeleteJob", new { id = Model.JobId })" class="btn btn-danger ml-2">Delete</a>
+            <a href="@Url.Action("Index")" class="btn btn-secondary ml-2">Go Back</a>
+        }
+        else
+        {
+            <a href="@Url.Action("ApplyToJob", "Applicant", new { jobId = Model.JobId })" class="btn btn-primary">Apply Now</a>
+            <a href="@Url.Action("Jobs", "Job")" class="btn btn-secondary ml-2">Go Back</a>
+
+
+        }
     </div>
 </div>
 <link href="https://fonts.googleapis.com/css2?family=Anek+Gurmukhi&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
