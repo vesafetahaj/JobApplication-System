@@ -74,5 +74,6 @@ namespace JobApplicationSystem.DAL.Repositories
                 .Where(j => j.Employer == employerId)
                 .ToListAsync();
         }
+        
     }
 }

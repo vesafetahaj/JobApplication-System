@@ -157,7 +157,7 @@
                     @if (User.IsInRole("Applicant"))
                     {
                         <div class="btn-row" style="margin-left: 90px; margin-top: 20px;">
-                            <a href="@Url.Action("ApplyToJob", "Applicant", new { jobId = job.JobId })" class="btn btn-primary">Apply</a>
+                            <a href="@Url.Action("ApplyForJob", "Application", new { jobId = job.JobId })" class="btn btn-primary">Apply</a>
                             <a href="@Url.Action("Details", "Job", new { id = job.JobId })" class="btn btn-secondary">View Details</a>
                         </div>
                     }

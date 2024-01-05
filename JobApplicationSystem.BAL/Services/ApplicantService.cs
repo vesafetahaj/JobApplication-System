@@ -1,4 +1,5 @@
 ﻿using JobApplicationSystem.DAL.Contracts;
+using JobApplicationSystem.DAL.Data;
 using JobApplicationSystem.DAL.Models;
 using JobApplicationSystem.DAL.Repositories;
 using System;
@@ -12,10 +13,14 @@ namespace JobApplicationSystem.BAL.Services
     public class ApplicantService : IApplicantService
     {
         private readonly IApplicantRepository<Applicant> _applicantRepository;
+        private readonly IJobRepository<Job> _jobRepository;
 
-        public ApplicantService(IApplicantRepository<Applicant> applicantRepository)
+
+
+        public ApplicantService(IApplicantRepository<Applicant> applicantRepository, IJobRepository<Job> jobRepository)
         {
             _applicantRepository = applicantRepository;
+            _jobRepository = jobRepository;
         }
         public async Task<Applicant> GetApplicantDetailsAsync(string userId)
         {
@@ -38,5 +43,6 @@ namespace JobApplicationSystem.BAL.Services
         {
             return await _applicantRepository.EditPersonalInfoAsync(applicant);
         }
+       
     }
 }

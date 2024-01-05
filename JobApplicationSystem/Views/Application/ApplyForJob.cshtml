@@ -1,0 +1,111 @@
+﻿@model JobApplicationSystem.DAL.Models.Application
+
+@{
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    h4 {
+        text-align: center;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+    .form-group input[type="file"] {
+        margin-top: 5px;
+    }
+
+    .job-info {
+        margin-bottom: 20px;
+    }
+
+    .btn-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-secondary {
+        background-color: #6C757D;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #5A4D46;
+        border-color: #5A4D46;
+    }
+
+        .btn-primary:hover {
+            background-color: #483F38;
+            border-color: #483F38;
+        }
+</style>
+
+<div class="container">
+    <h4>Application Details</h4>
+    <hr/>
+
+    <div class="job-info">
+        <p><strong>Job Title:</strong> @Model.JobNavigation.Title</p>
+        <p><strong>Company:</strong> @Model.JobNavigation.Company</p>
+    </div>
+
+    <form asp-action="ApplyForJob" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="Education">Education:</label>
+            <input type="text" id="Education" name="Education" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Experience">Experience:</label>
+            <textarea id="Experience" name="Experience" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Resume">Upload Resume:</label>
+            <input type="file" id="Resume" asp-for="Resume" accept=".pdf,.doc,.docx" required />
+        </div>
+
+        <input type="hidden" name="Job" value="@Model.JobNavigation.JobId">
+
+        <div class="btn-row">
+            <input type="submit" value="Apply" class="btn btn-primary" />
+            <a asp-action="Jobs" asp-controller="Job" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

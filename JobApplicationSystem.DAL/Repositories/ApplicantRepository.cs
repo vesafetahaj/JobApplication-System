@@ -59,5 +59,6 @@ namespace JobApplicationSystem.DAL.Repositories
                 return false;
             }
         }
+       
     }
 }
