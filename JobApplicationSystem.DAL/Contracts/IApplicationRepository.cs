@@ -23,6 +23,6 @@ namespace JobApplicationSystem.DAL.Contracts
         Task<bool> DeleteApplicationAsync(int applicationId);
         bool CheckIfApplicantApplied(int? applicantId, int? jobId);
         Task<IEnumerable<Application>> GetApplicationsByUserIdAsync(string userId);
-
+        Task<IEnumerable<Application>> GetApplicationsByJobIdAsync(int jobId);
     }
 }

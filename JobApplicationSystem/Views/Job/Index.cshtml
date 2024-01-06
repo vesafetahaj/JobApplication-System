@@ -46,6 +46,7 @@
                     <div class="d-flex flex-column align-items-end">
                         <p class="card-text small text-muted">Last Date to Apply: @job.LastDateToApply.ToShortDateString()</p>
                         <a href="@Url.Action("Details", new { id = job.JobId })" class="btn btn-primary mt-2">View Details</a>
+                        <a href="@Url.Action("ViewApplicants", "Employer", new { jobId = job.JobId })" class="btn btn-primary mt-2">View Applicants</a>
                     </div>
                 </div>
             </div>

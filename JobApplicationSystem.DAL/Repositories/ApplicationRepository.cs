@@ -83,5 +83,12 @@ namespace JobApplicationSystem.DAL.Repositories
                 .Where(a => a.ApplicantNavigation.User == userId).Include(a => a.JobNavigation)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<Application>> GetApplicationsByJobIdAsync(int jobId)
+        {
+            return await _dbContext.Applications
+                .Include(a => a.ApplicantNavigation)
+                .Where(a => a.Job == jobId)
+                .ToListAsync();
+        }
     }
 }

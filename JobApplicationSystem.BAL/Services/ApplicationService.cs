@@ -51,6 +51,13 @@ namespace JobApplicationSystem.BAL.Services
         {
             return _applicationRepository.CheckIfApplicantApplied(applicantId, jobId);
         }
+        public async Task<IEnumerable<Applicant>> GetApplicantsForJobAsync(int jobId)
+        {
+            var applications = await _applicationRepository.GetApplicationsByJobIdAsync(jobId);
 
+            var applicants = applications.Select(application => application.ApplicantNavigation);
+
+            return applicants;
+        }
     }
 }

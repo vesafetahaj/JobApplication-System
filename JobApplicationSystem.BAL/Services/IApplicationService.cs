@@ -15,6 +15,7 @@ namespace JobApplicationSystem.BAL.Services
         Task<bool> UpdateApplicationAsync(int applicationId, Application updatedApplication);
         Task<bool> DeleteApplicationAsync(int applicationId);
         bool CheckIfApplicantApplied(int? applicantId, int? jobId);
+        Task<IEnumerable<Applicant>> GetApplicantsForJobAsync(int jobId);
 
     }
 }
