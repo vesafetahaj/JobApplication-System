@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using System.Text;
 
 namespace JobApplicationSystem.Controllers
 {
@@ -12,10 +13,12 @@ namespace JobApplicationSystem.Controllers
     public class ApplicantController : Controller
     {
         private readonly IApplicantService _applicantService;
-        public ApplicantController(IApplicantService applicantService)
+        private readonly IApplicationService _applicationService;
+
+        public ApplicantController(IApplicantService applicantService, IApplicationService applicationService)
         {
             _applicantService = applicantService;
-           
+            _applicationService = applicationService;
         }
         [HttpGet]
         public async Task<IActionResult> Details()
@@ -204,5 +207,32 @@ namespace JobApplicationSystem.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Applications()
+        {
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applications = await _applicantService.GetApplicationsByUserIdAsync(loggedInUserId);
+            return View(applications);
+        }
+        public IActionResult DownloadResume(int applicationId)
+        {
+            var application = _applicationService.GetApplicationByIdAsync(applicationId).Result;
+
+            if (application != null && !string.IsNullOrEmpty(application.Resume))
+            {
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files", application.Resume);
+
+                if (System.IO.File.Exists(filePath))
+                {
+                    var fileBytes = System.IO.File.ReadAllBytes(filePath);
+                    return File(fileBytes, "application/octet-stream", application.Resume);
+                }
+            }
+
+            return NotFound();
+        }
+
+
+
     }
 }

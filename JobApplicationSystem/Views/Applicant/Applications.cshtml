@@ -1,0 +1,59 @@
+﻿@model IEnumerable<JobApplicationSystem.DAL.Models.Application>
+
+@{
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .custom-bg-brown {
+        background-color: #4d331f;
+        color: white;
+    }
+</style>
+
+<h1>Applications</h1>
+<br />
+
+@if (Model.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="custom-bg-brown">
+                <tr>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>Education</th>
+                    <th>Experience</th>
+                    <th>Resume</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var application in Model)
+                {
+                    <tr>
+                        <td>@application.JobNavigation?.Title</td>
+                        <td>@application.JobNavigation?.Company</td>
+                        <td>@application.Education</td>
+                        <td>@application.Experience</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(application.Resume))
+                            {
+                                <a href="@Url.Action("DownloadResume", "Applicant", new { applicationId = application.ApplicationId })">
+                                    Download Resume
+                                </a>
+                            }
+                            else
+                            {
+                                <span>No resume available</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>No applications found.</p>
+}

@@ -1,10 +1,30 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewData["Title"] = "Unauthorized";
+﻿@{
+    ViewData["Title"] = "Error!";
 }
+
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    h4 {
+        color: #FF0000;
+
+    p {
+        margin-top: 10px;
+        color: #333;
+    }
+</style>
+
 <header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You already applied for this job</p>
+    <h4>You've already applied for this job.</h4>
+    <p>Check your applications.</p>
 </header>

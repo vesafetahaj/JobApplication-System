@@ -22,7 +22,7 @@ namespace JobApplicationSystem.BAL.Services
             _jobRepository = jobRepository;
         }
 
-        public async Task<int> AddApplicationAsync(Application application)
+        public async Task<bool> AddApplicationAsync(Application application)
         {
             
             return await _applicationRepository.AddApplicationAsync(application);
@@ -47,7 +47,7 @@ namespace JobApplicationSystem.BAL.Services
         {
             return await _applicationRepository.DeleteApplicationAsync(applicationId);
         }
-        public bool CheckIfApplicantApplied(int applicantId, int jobId)
+        public bool CheckIfApplicantApplied(int? applicantId, int? jobId)
         {
             return _applicationRepository.CheckIfApplicantApplied(applicantId, jobId);
         }

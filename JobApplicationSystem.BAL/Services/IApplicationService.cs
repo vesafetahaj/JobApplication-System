@@ -9,12 +9,12 @@ namespace JobApplicationSystem.BAL.Services
 {
     public interface IApplicationService
     {
-        Task<int> AddApplicationAsync(Application application);
+        Task<bool> AddApplicationAsync(Application application);
         Task<IEnumerable<Application>> GetAllApplicationsAsync();
         Task<Application> GetApplicationByIdAsync(int applicationId);
         Task<bool> UpdateApplicationAsync(int applicationId, Application updatedApplication);
         Task<bool> DeleteApplicationAsync(int applicationId);
-        bool CheckIfApplicantApplied(int applicantId, int jobId);
+        bool CheckIfApplicantApplied(int? applicantId, int? jobId);
 
     }
 }

@@ -10,7 +10,7 @@ namespace JobApplicationSystem.DAL.Contracts
     public interface IApplicationRepository<Application>
     {
         // Create
-        Task<int> AddApplicationAsync(Application application);
+        Task<bool> AddApplicationAsync(Application application);
 
         // Read
         Task<IEnumerable<Application>> GetAllApplicationsAsync();
@@ -21,7 +21,8 @@ namespace JobApplicationSystem.DAL.Contracts
 
         // Delete
         Task<bool> DeleteApplicationAsync(int applicationId);
-        bool CheckIfApplicantApplied(int applicantId, int jobId);
+        bool CheckIfApplicantApplied(int? applicantId, int? jobId);
+        Task<IEnumerable<Application>> GetApplicationsByUserIdAsync(string userId);
 
     }
 }

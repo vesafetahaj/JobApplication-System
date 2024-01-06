@@ -18,11 +18,19 @@ namespace JobApplicationSystem.DAL.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<int> AddApplicationAsync(Application application)
+     
+        public async Task<bool> AddApplicationAsync(Application application)
         {
-            _dbContext.Applications.Add(application);
-            await _dbContext.SaveChangesAsync();
-            return application.ApplicationId;
+            try
+            {
+                _dbContext.Add(application);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         public async Task<Application> GetApplicationByIdAsync(int applicationId)
         {
@@ -40,16 +48,16 @@ namespace JobApplicationSystem.DAL.Repositories
             if (existingApplication == null)
                 return false;
 
-
             existingApplication.Education = updatedApplication.Education;
-            updatedApplication.Experience = updatedApplication.Experience;
-            updatedApplication.Resume = updatedApplication.Resume;
-            updatedApplication.Job = updatedApplication.Job;
-            updatedApplication.Applicant = updatedApplication.Applicant;
-           
+            existingApplication.Experience = updatedApplication.Experience;
+            existingApplication.Resume = updatedApplication.Resume;
+            existingApplication.Job = updatedApplication.Job;
+            existingApplication.Applicant = updatedApplication.Applicant;
+
             await _dbContext.SaveChangesAsync();
             return true;
         }
+
 
 
         public async Task<bool> DeleteApplicationAsync(int applicationId)
@@ -64,9 +72,16 @@ namespace JobApplicationSystem.DAL.Repositories
             return true;
         }
 
-        public bool CheckIfApplicantApplied(int applicantId, int jobId)
+        public bool CheckIfApplicantApplied(int? applicantId, int? jobId)
         {
             return _dbContext.Applications.Any(a => a.Applicant == applicantId && a.Job == jobId);
+     
+        }
+        public async Task<IEnumerable<Application>> GetApplicationsByUserIdAsync(string userId)
+        {
+            return await _dbContext.Applications
+                .Where(a => a.ApplicantNavigation.User == userId).Include(a => a.JobNavigation)
+                .ToListAsync();
         }
     }
 }

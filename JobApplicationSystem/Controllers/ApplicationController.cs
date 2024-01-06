@@ -20,54 +20,59 @@ namespace JobApplicationSystem.Controllers
 
         public async Task<IActionResult> ApplyForJob(int jobId)
         {
-            // Retrieve the job details
+           
             var job = await _jobService.GetJobByIdAsync(jobId);
 
-            // Create an empty Application model or customize based on your needs
+
             var applicationModel = new Application
             {
-                JobNavigation = job // Associate the job details with the application model
+                JobNavigation = job
             };
 
             return View(applicationModel);
         }
         [HttpPost]
-        public async Task<IActionResult> ApplyForJob(Application application)
+        public async Task<IActionResult> ApplyForJob([Bind("ApplicationId,Education,Experience,Applicant,Job,Resume")] Application application)
         {
             try
             {
-                // Retrieve JobId from the form data
                 int? jobId = application.Job;
-
-                // Set the JobId and ApplicantId in the application
                 application.Job = jobId;
 
                 string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var applicant = await _applicantService.GetApplicantDetailsAsync(loggedInUserId);
                 application.Applicant = applicant.ApplicantId;
-                await _applicationService.AddApplicationAsync(application);
-                return RedirectToAction("Jobs", "Job"); 
+
+                if (!_applicationService.CheckIfApplicantApplied(application.Applicant, application.Job))
+                {
+                    await _applicationService.AddApplicationAsync(application);
+                    return RedirectToAction("Applications", "Applicant");
+                }
+                else
+                {
+                    return RedirectToAction("UnauthorizedApplication");
+                }
             }
             catch (ArgumentException ex)
             {
-                // Handle validation errors
                 ModelState.AddModelError(ex.ParamName, ex.Message);
             }
             catch (InvalidOperationException ex)
             {
-                // Handle business rule violations
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
             catch (Exception ex)
             {
-                // Handle other exceptions
                 ModelState.AddModelError(string.Empty, "An error occurred while processing your application.");
             }
 
-            // If there are errors, return to the form with errors
             return View(application);
         }
 
-        
+        public IActionResult UnauthorizedApplication()
+        {
+            return View();
+        }
+
     }
 }

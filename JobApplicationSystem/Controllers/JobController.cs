@@ -204,6 +204,7 @@ namespace JobApplicationSystem.Controllers
         public async Task<ActionResult> Jobs()
         {
             var allJobs = await _jobService.GetAllJobsAsync();
+
             return View("Jobs", allJobs);
         }
         public async Task<ActionResult> Search(string searchQuery)
