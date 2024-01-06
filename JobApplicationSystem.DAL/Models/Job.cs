@@ -5,6 +5,11 @@ namespace JobApplicationSystem.DAL.Models
 {
     public partial class Job
     {
+        public Job()
+        {
+            Applications = new HashSet<Application>();
+        }
+
         public int JobId { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
@@ -19,5 +24,6 @@ namespace JobApplicationSystem.DAL.Models
         public string? Salary { get; set; }
 
         public virtual Employer? EmployerNavigation { get; set; }
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }

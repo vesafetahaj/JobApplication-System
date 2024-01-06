@@ -5,18 +5,23 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using System.Text;
 
 namespace JobApplicationSystem.Controllers
 {
-    [Authorize(Roles = "Applicant")]
     public class ApplicantController : Controller
     {
         private readonly IApplicantService _applicantService;
-        public ApplicantController(IApplicantService applicantService)
+        private readonly IApplicationService _applicationService;
+
+        public ApplicantController(IApplicantService applicantService, IApplicationService applicationService)
         {
             _applicantService = applicantService;
-           
+            _applicationService = applicationService;
         }
+
+       
+        [Authorize(Roles = "Applicant")]
         [HttpGet]
         public async Task<IActionResult> Details()
         {
@@ -26,6 +31,7 @@ namespace JobApplicationSystem.Controllers
             return applicant != null ? View(applicant) : (IActionResult)NotFound();
         }
 
+        [Authorize(Roles = "Applicant")]
         public async Task<IActionResult> PersonalInfo()
         {
             string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -41,7 +47,7 @@ namespace JobApplicationSystem.Controllers
         }
 
 
-
+        [Authorize(Roles = "Applicant")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PersonalInfo([Bind("ApplicantId,Name,Surname,Email,Mobile,Address,Image,Education,User")] Applicant applicant, IFormFile resumeFile)
@@ -57,6 +63,8 @@ namespace JobApplicationSystem.Controllers
 
             return View(applicant);
         }
+
+        [Authorize(Roles = "Applicant")]
         public async Task<IActionResult> EditPersonalInfo()
         {
             try
@@ -79,6 +87,7 @@ namespace JobApplicationSystem.Controllers
             }
         }
 
+        [Authorize(Roles = "Applicant")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPersonalInfo([Bind("ApplicantId,Name,Surname,Email,Mobile,Address,Image,User,Education")] Applicant applicant)
@@ -108,8 +117,6 @@ namespace JobApplicationSystem.Controllers
             {
                 ModelState.AddModelError("Education", "Education is required.");
             }
-
-
             if (string.IsNullOrWhiteSpace(applicant.Image))
             {
                 ModelState.AddModelError("Image", "Image is required.");
@@ -135,13 +142,7 @@ namespace JobApplicationSystem.Controllers
         {
             return View();
         }
-        
-        // GET: ApplicantController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+       
         // GET: ApplicantController/Create
         public ActionResult Create()
         {
@@ -204,5 +205,35 @@ namespace JobApplicationSystem.Controllers
                 return View();
             }
         }
+
+        [Authorize(Roles = "Applicant")]
+        [HttpGet]
+        public async Task<IActionResult> Applications()
+        {
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applications = await _applicantService.GetApplicationsByUserIdAsync(loggedInUserId);
+            return View(applications);
+        }
+        [Authorize(Roles = "Applicant, Employer")]
+        public IActionResult DownloadResume(int applicationId)
+        {
+            var application = _applicationService.GetApplicationByIdAsync(applicationId).Result;
+
+            if (application != null && !string.IsNullOrEmpty(application.Resume))
+            {
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files", application.Resume);
+
+                if (System.IO.File.Exists(filePath))
+                {
+                    var fileBytes = System.IO.File.ReadAllBytes(filePath);
+                    return File(fileBytes, "application/octet-stream", application.Resume);
+                }
+            }
+
+            return NotFound();
+        }
+
+
+
     }
 }

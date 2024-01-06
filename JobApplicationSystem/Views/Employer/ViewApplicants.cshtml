@@ -1,0 +1,92 @@
+﻿@using JobApplicationSystem.DAL.Models;
+@{
+    var job = ViewBag.Job as Job;
+    var applicants = ViewBag.Applicants as IEnumerable<Applicant>;
+    Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+}
+
+<h1 class="mb-4">Applicants for @job.Title Position</h1>
+<hr />
+<div class="row">
+    @if (applicants != null && applicants.Any())
+    {
+        @foreach (var applicant in applicants)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card applicant-tile d-flex flex-column align-items-center">
+                    <img src="@Url.Content($"~/images/{applicant.Image}")" class="card-img-top rounded-circle" alt="Applicant Image" style="width: 35%">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@applicant.Name @applicant.Surname</h5>
+                        <p class="card-text"><i class="fa fa-envelope" aria-hidden="true"></i> @applicant.Email</p>
+                        <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> @applicant.Address</p>
+                        <p class="card-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i> @applicant.Education</p>
+                        @if (applicant.Applications != null && applicant.Applications.Any())
+                        {
+                            var experience = applicant.Applications.First().Experience;
+                            <p class="card-text"><i class="fa fa-briefcase" aria-hidden="true"></i> Experience: @experience</p>
+                        }
+                        @if (applicant.Applications != null && applicant.Applications.Any() && !string.IsNullOrEmpty(applicant.Applications.First().Resume))
+                        {
+                            <a href="@Url.Action("DownloadResume", "Applicant", new { applicationId = applicant.Applications.First().ApplicationId })" class="btn btn-outline-success btn-sm" title="Download Resume">
+                                Download Resume
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col">
+            <p class="text-muted">No applicants found for this job.</p>
+        </div>
+    }
+</div>
+
+<style>
+    .applicant-tile {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+        height: 100%; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .applicant-tile:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .card-img-top {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .card-body {
+        text-align: left; 
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%; 
+    }
+    .card-title {
+        margin-bottom: 10px; 
+    }
+
+    .applicant-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px; 
+    }
+
+        .applicant-info img {
+            width: 35px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

@@ -26,11 +26,14 @@ builder.Services.AddScoped<IEmployerService, EmployerService>();
 builder.Services.AddScoped<IApplicantService, ApplicantService>();
 builder.Services.AddScoped<IAdministratorService, AdministratorService>();
 builder.Services.AddScoped<IJobService, JobService>();
+builder.Services.AddScoped<IApplicationService, ApplicationService>();
+
 builder.Services.AddScoped<IRoleRepository<AspNetRole>, RoleRepository>();
 builder.Services.AddScoped<IEmployerRepository<Employer>, EmployerRepository>();
 builder.Services.AddScoped<IApplicantRepository<Applicant>, ApplicantRepository>();
 builder.Services.AddScoped<IAdministratorRepository<Administrator>, AdministratorRepository>();
 builder.Services.AddScoped<IJobRepository<Job>, JobRepository>();
+builder.Services.AddScoped<IApplicationRepository<Application>, ApplicationRepository>();
 
 
 

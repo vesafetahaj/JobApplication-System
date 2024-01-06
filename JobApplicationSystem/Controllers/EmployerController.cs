@@ -13,9 +13,16 @@ namespace JobApplicationSystem.Controllers
     public class EmployerController : Controller
     {
         private readonly IEmployerService _employerService;
-        public EmployerController(IEmployerService employerService)
+        private readonly IApplicantService _applicantService;
+        private readonly IApplicationService _applicationService;
+        private readonly IJobService _jobService;
+
+        public EmployerController(IEmployerService employerService, IJobService jobService, IApplicantService applicantService, IApplicationService applicationService)
         {
             _employerService = employerService;
+            _jobService = jobService;
+            _applicantService = applicantService;       
+            _applicationService = applicationService;   
         }
 
         [HttpGet]
@@ -136,7 +143,35 @@ namespace JobApplicationSystem.Controllers
             return View(employer);
         }
 
+        public async Task<IActionResult> ViewApplicants(int jobId)
+        {
+            var job = await _jobService.GetJobByIdAsync(jobId);
 
+            if (job == null)
+            {
+                return NotFound();
+            }
+
+            var applicants = await _applicationService.GetApplicantsForJobAsync(jobId);
+
+            ViewBag.Job = job;
+            ViewBag.Applicants = applicants;
+      
+
+            return View();
+        }
+
+        public async Task<IActionResult> ViewApplicantProfile(int applicantId)
+        {
+            var applicant = await _applicantService.GetApplicantByIdAsync(applicantId);
+
+            if (applicant == null)
+            {
+                return NotFound();
+            }
+
+            return View(applicant);
+        }
         public ActionResult Index()
         {
             return View();

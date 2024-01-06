@@ -1,7 +1,12 @@
 ﻿@model List<JobApplicationSystem.DAL.Models.Job>
 
 @{
+
     Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+    if (User.IsInRole("Applicant"))
+    {
+        Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+    }
 }
 
 <style>
@@ -106,6 +111,16 @@
         #search-btn:hover {
             background-color: #483F38;
         }
+
+    .btn-primary {
+        background-color: #5A4D46;
+        border-color: #5A4D46;
+    }
+
+        .btn-primary:hover {
+            background-color: #483F38;
+            border-color: #483F38;
+        }
 </style>
 
 <h1>All jobs posts</h1>
@@ -139,6 +154,13 @@
                         <span>@job.Salary</span>
                         <span>Last Date to Apply: @job.LastDateToApply?.ToShortDateString()</span>
                     </div>
+                    @if (User.IsInRole("Applicant"))
+                    {
+                        <div class="btn-row" style="margin-left: 90px; margin-top: 20px;">
+                            <a href="@Url.Action("ApplyForJob", "Application", new { jobId = job.JobId })" class="btn btn-primary">Apply</a>
+                            <a href="@Url.Action("Details", "Job", new { id = job.JobId })" class="btn btn-secondary">View Details</a>
+                        </div>
+                    }
                 </div>
             </div>
         }

@@ -51,6 +51,7 @@ namespace JobApplicationSystem.DAL.Repositories
             existingJob.CompanyLogo = updatedJob.CompanyLogo;
             existingJob.Address = updatedJob.Address;
             existingJob.Employer = updatedJob.Employer;
+            existingJob.Salary = updatedJob.Salary;
 
             await _dbcontext.SaveChangesAsync();
             return true;
@@ -74,5 +75,6 @@ namespace JobApplicationSystem.DAL.Repositories
                 .Where(j => j.Employer == employerId)
                 .ToListAsync();
         }
+        
     }
 }

@@ -7,7 +7,6 @@ using System.Security.Claims;
 
 namespace JobApplicationSystem.Controllers
 {
-    [Authorize(Roles = "Employer")]
 
     public class JobController : Controller
     {
@@ -19,6 +18,9 @@ namespace JobApplicationSystem.Controllers
             _jobService = jobService;
             _employerService = employerService;
         }
+
+        [Authorize(Roles = "Employer")]
+
         public async Task<ActionResult> Index()
         {
             string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -34,6 +36,9 @@ namespace JobApplicationSystem.Controllers
                 return RedirectToAction("Index", "Employer");
             }
         }
+
+        [Authorize(Roles = "Employer, Applicant")]
+
         public async Task<ActionResult> Details(int id)
         {
             var job = await _jobService.GetJobByIdAsync(id);
@@ -45,7 +50,9 @@ namespace JobApplicationSystem.Controllers
 
             return View(job);
         }
-       
+
+        [Authorize(Roles = "Employer")]
+
         public ActionResult CreateJob()
         {
             return View();
@@ -55,6 +62,9 @@ namespace JobApplicationSystem.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Employer")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateJob(Job job)
@@ -89,6 +99,7 @@ namespace JobApplicationSystem.Controllers
             }
         }
 
+        [Authorize(Roles = "Employer")]
         public async Task<ActionResult> EditJob(int id)
         {
             var job = await _jobService.GetJobByIdAsync(id);
@@ -109,6 +120,7 @@ namespace JobApplicationSystem.Controllers
             return View(job);
         }
 
+        [Authorize(Roles = "Employer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditJob(int id, Job updatedJob)
@@ -139,6 +151,7 @@ namespace JobApplicationSystem.Controllers
             }
         }
 
+        [Authorize(Roles = "Employer")]
         public async Task<ActionResult> DeleteJob(int id)
         {
             var job = await _jobService.GetJobByIdAsync(id);
@@ -159,6 +172,7 @@ namespace JobApplicationSystem.Controllers
             return View(job);
         }
 
+        [Authorize(Roles = "Employer")]
         [HttpPost, ActionName("DeleteJob")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteJobConfirmed(int id)
@@ -185,9 +199,12 @@ namespace JobApplicationSystem.Controllers
             }
         }
 
+        [Authorize(Roles = "Employer, Applicant")]
+
         public async Task<ActionResult> Jobs()
         {
             var allJobs = await _jobService.GetAllJobsAsync();
+
             return View("Jobs", allJobs);
         }
         public async Task<ActionResult> Search(string searchQuery)
