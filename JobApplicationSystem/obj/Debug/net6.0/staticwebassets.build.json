@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nkie0EK9dtOyJtf2xpDcfDpuczppPYKeZdK2sSMReHk=",
+  "Hash": "wH/sZfhxIjm0h0ph3a+8QacJ83sWM7PRPdEC4CXGw/E=",
   "Source": "JobApplicationSystem",
   "BasePath": "_content/JobApplicationSystem",
   "Mode": "Default",
@@ -1190,6 +1190,23 @@
       "OriginalItemSpec": "wwwroot\\files\\CV - ENG.docx"
     },
     {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\files\\srs.docx",
+      "SourceId": "JobApplicationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\",
+      "BasePath": "_content/JobApplicationSystem",
+      "RelativePath": "files/srs.docx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\files\\srs.docx"
+    },
+    {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\8hO4Ijb9_400x400.jpg",
       "SourceId": "JobApplicationSystem",
       "SourceType": "Discovered",
@@ -1239,6 +1256,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\businessman.png"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\colleagues-giving-fist-bump.jpg",
+      "SourceId": "JobApplicationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\",
+      "BasePath": "_content/JobApplicationSystem",
+      "RelativePath": "images/colleagues-giving-fist-bump.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\colleagues-giving-fist-bump.jpg"
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\home.png",

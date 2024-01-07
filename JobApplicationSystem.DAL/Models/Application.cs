@@ -11,6 +11,7 @@ namespace JobApplicationSystem.DAL.Models
         public int? Applicant { get; set; }
         public int? Job { get; set; }
         public string? Resume { get; set; }
+        public string? Status { get; set; }
 
         public virtual Applicant? ApplicantNavigation { get; set; }
         public virtual Job? JobNavigation { get; set; }

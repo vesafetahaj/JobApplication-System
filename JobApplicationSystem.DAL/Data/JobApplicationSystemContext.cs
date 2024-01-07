@@ -146,6 +146,10 @@ namespace JobApplicationSystem.DAL.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.ApplicantNavigation)
                     .WithMany(p => p.Applications)
                     .HasForeignKey(d => d.Applicant)

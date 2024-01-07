@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\files\\CV - ENG.docx"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\files\\srs.docx",
+      "PackagePath": "staticwebassets\\files\\srs.docx"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\8hO4Ijb9_400x400.jpg",
       "PackagePath": "staticwebassets\\images\\8hO4Ijb9_400x400.jpg"
     },
@@ -43,6 +47,10 @@
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\businessman.png",
       "PackagePath": "staticwebassets\\images\\businessman.png"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\colleagues-giving-fist-bump.jpg",
+      "PackagePath": "staticwebassets\\images\\colleagues-giving-fist-bump.jpg"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\home.png",
