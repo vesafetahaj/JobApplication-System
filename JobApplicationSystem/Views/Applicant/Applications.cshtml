@@ -9,10 +9,18 @@
         background-color: #4d331f;
         color: white;
     }
+
+    .status-approved {
+        color: green;
+    }
+
+    .status-declined {
+        color: red;
+    }
 </style>
 
 <h1>Applications</h1>
-<br />
+<hr />
 
 @if (Model.Any())
 {
@@ -25,6 +33,7 @@
                     <th>Education</th>
                     <th>Experience</th>
                     <th>Resume</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,6 +54,16 @@
                             else
                             {
                                 <span>No resume available</span>
+                            }
+                        </td>
+                        <td>
+                            @if (string.IsNullOrEmpty(application.Status))
+                            {
+                                <span>Pending</span>
+                            }
+                            else
+                            {
+                                @application.Status
                             }
                         </td>
                     </tr>
