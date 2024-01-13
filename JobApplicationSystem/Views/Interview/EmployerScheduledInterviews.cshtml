@@ -1,0 +1,39 @@
+﻿@model List<JobApplicationSystem.DAL.Models.Interview>
+
+@{
+    ViewData["Title"] = "Employer Scheduled Interviews";
+    Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+    
+}
+<h1>Your Scheduled Interviews</h1>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Job Position</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Applicant</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var interview in Model)
+            {
+                <tr>
+                    <td>@interview.ApplicationNavigation?.JobNavigation?.Title</td>
+                    <td>@interview.Time</td>
+                    <td>@interview.Location</td>
+                    <td>@interview.ApplicationNavigation?.ApplicantNavigation?.Name @interview.ApplicationNavigation?.ApplicantNavigation?.Surname</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No scheduled interviews for this employer.</p>
+}
+
+<a asp-controller="Job" asp-action="Index">Back to Job Listings</a>

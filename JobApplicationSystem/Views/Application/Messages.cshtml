@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Message>
+@using JobApplicationSystem.DAL.Models
+
+@{
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<h2>Messages</h2>
+
+<div id="message-container">
+    <ul id="message-list">
+        @if (Model != null)
+        {
+            @foreach (var message in Model)
+            {
+                <div>
+                    <strong>@message.SenderNavigation.Email</strong>
+                    <span>@message.Content</span>
+                    <small>@message.Date</small>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No messages found.</p>
+        }
+    </ul>
+</div>
+
+<div id="input-container">
+    <textarea id="message-input" name="content" required placeholder="Type your message..."></textarea>
+    <button id="send-button" onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+    function sendMessage() {
+        var messageInput = document.getElementById("message-input");
+        var messageText = messageInput.value;
+
+        if (messageText.trim() !== "") {
+            var messageList = document.getElementById("message-list");
+            var newMessage = document.createElement("li");
+            newMessage.className = "message";
+            newMessage.innerHTML = '<strong>YourEmail@example.com</strong><span>' + messageText + '</span><small>' + new Date().toLocaleString() + '</small>';
+
+            messageList.appendChild(newMessage);
+            messageInput.value = "";
+        }
+    }
+</script>
+
+<form method="post" action="@Url.Action("SendMessage", "Application")">
+    <input type="hidden" name="receiverId" value="@ViewBag.ReceiverId" />
+    <textarea name="content" required></textarea>
+    <button type="submit">Send</button>
+</form>
