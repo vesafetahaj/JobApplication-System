@@ -28,7 +28,9 @@ namespace JobApplicationSystem.DAL.Data
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
         public virtual DbSet<Employer> Employers { get; set; } = null!;
+        public virtual DbSet<Interview> Interviews { get; set; } = null!;
         public virtual DbSet<Job> Jobs { get; set; } = null!;
+        public virtual DbSet<Message> Messages { get; set; } = null!;
         public virtual DbSet<Resume> Resumes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -134,6 +136,10 @@ namespace JobApplicationSystem.DAL.Data
 
                 entity.Property(e => e.ApplicationId).HasColumnName("ApplicationID");
 
+                entity.Property(e => e.Date)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Education)
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -144,6 +150,10 @@ namespace JobApplicationSystem.DAL.Data
 
                 entity.Property(e => e.Resume)
                     .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.ApplicantNavigation)
@@ -310,6 +320,21 @@ namespace JobApplicationSystem.DAL.Data
                     .HasConstraintName("FK_Employer_AspNetUsers");
             });
 
+            modelBuilder.Entity<Interview>(entity =>
+            {
+                entity.ToTable("Interview");
+
+                entity.Property(e => e.Location).HasMaxLength(255);
+
+                entity.Property(e => e.Time).HasColumnType("datetime");
+
+                entity.HasOne(d => d.ApplicationNavigation)
+                    .WithMany(p => p.Interviews)
+                    .HasForeignKey(d => d.Application)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Interview_Application1");
+            });
+
             modelBuilder.Entity<Job>(entity =>
             {
                 entity.ToTable("Job");
@@ -345,6 +370,28 @@ namespace JobApplicationSystem.DAL.Data
                     .HasForeignKey(d => d.Employer)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Job_Employer1");
+            });
+
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.ToTable("Message");
+
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.Receiver).HasMaxLength(450);
+
+                entity.Property(e => e.Sender).HasMaxLength(450);
+
+                entity.HasOne(d => d.ReceiverNavigation)
+                    .WithMany(p => p.MessageReceiverNavigations)
+                    .HasForeignKey(d => d.Receiver)
+                    .HasConstraintName("FK_Message_AspNetUsers2");
+
+                entity.HasOne(d => d.SenderNavigation)
+                    .WithMany(p => p.MessageSenderNavigations)
+                    .HasForeignKey(d => d.Sender)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Message_AspNetUsers");
             });
 
             modelBuilder.Entity<Resume>(entity =>

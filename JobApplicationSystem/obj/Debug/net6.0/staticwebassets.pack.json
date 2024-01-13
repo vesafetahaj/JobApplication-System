@@ -33,8 +33,20 @@
       "PackagePath": "staticwebassets\\files\\CV - ENG.docx"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\files\\srs.docx",
+      "PackagePath": "staticwebassets\\files\\srs.docx"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\146007.png",
+      "PackagePath": "staticwebassets\\images\\146007.png"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\8hO4Ijb9_400x400.jpg",
       "PackagePath": "staticwebassets\\images\\8hO4Ijb9_400x400.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\Screenshot 2024-01-08 195523.png",
+      "PackagePath": "staticwebassets\\images\\Screenshot 2024-01-08 195523.png"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\briefcase.png",

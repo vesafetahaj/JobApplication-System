@@ -2,91 +2,157 @@
 @{
     var job = ViewBag.Job as Job;
     var applicants = ViewBag.Applicants as IEnumerable<Applicant>;
+    var application = ViewBag.Application as Application;
+
     Layout = "~/Views/Shared/_EmployerLayout.cshtml";
 }
 
-<h1 class="mb-4">Applicants for @job.Title Position</h1>
-<hr />
-<div class="row">
-    @if (applicants != null && applicants.Any())
-    {
-        @foreach (var applicant in applicants)
-        {
-            <div class="col-md-4 mb-4">
-                <div class="card applicant-tile d-flex flex-column align-items-center">
-                    <img src="@Url.Content($"~/images/{applicant.Image}")" class="card-img-top rounded-circle" alt="Applicant Image" style="width: 35%">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">@applicant.Name @applicant.Surname</h5>
-                        <p class="card-text"><i class="fa fa-envelope" aria-hidden="true"></i> @applicant.Email</p>
-                        <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> @applicant.Address</p>
-                        <p class="card-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i> @applicant.Education</p>
-                        @if (applicant.Applications != null && applicant.Applications.Any())
-                        {
-                            var experience = applicant.Applications.First().Experience;
-                            <p class="card-text"><i class="fa fa-briefcase" aria-hidden="true"></i> Experience: @experience</p>
-                        }
-                        @if (applicant.Applications != null && applicant.Applications.Any() && !string.IsNullOrEmpty(applicant.Applications.First().Resume))
-                        {
-                            <a href="@Url.Action("DownloadResume", "Applicant", new { applicationId = applicant.Applications.First().ApplicationId })" class="btn btn-outline-success btn-sm" title="Download Resume">
-                                Download Resume
-                            </a>
-                        }
-                    </div>
-                </div>
-            </div>
-        }
-    }
-    else
-    {
-        <div class="col">
-            <p class="text-muted">No applicants found for this job.</p>
-        </div>
-    }
-</div>
-
 <style>
-    .applicant-tile {
+    .applicant-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .applicant-row {
         background-color: #f8f9fa;
         border: 1px solid #dee2e6;
         border-radius: 8px;
         transition: box-shadow 0.3s ease;
-        height: 100%; 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
     }
 
-        .applicant-tile:hover {
+
+        .applicant-row:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-    .card-img-top {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-    }
-
-    .card-body {
-        text-align: left; 
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        height: 100%; 
-    }
-    .card-title {
-        margin-bottom: 10px; 
+    .applicant-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
     }
 
     .applicant-info {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px; 
+        text-align: left;
+        vertical-align: top;
+        padding-top: 10px;
     }
 
-        .applicant-info img {
-            width: 35px;
-            border-radius: 50%;
-            margin-right: 10px;
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+        .action-buttons button {
+            width: 48%;
         }
+
 </style>
+
+<h1 class="mb-4">Applicants for @job.Title Position</h1>
+<hr />
+@if (applicants != null && applicants.Any())
+{
+    @foreach (var applicant in applicants)
+    {
+        <div class="applicant-row">
+            <div>
+                <img src="@Url.Content($"~/images/{applicant.Image}")" class="applicant-img" alt="Applicant Image">
+                <span>@applicant.Name @applicant.Surname</span>
+            </div>
+            <table class="applicant-table">
+                <tr>
+
+                    <th>Email</th>
+                    <th>Education</th>
+                    <th>Experience</th>
+                    <th>Date</th>
+                    <th>Resume</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td class="applicant-info">@applicant.Email</td>
+                    <td class="applicant-info">@applicant.Applications.First().Education</td>
+                    <td class="applicant-info">@applicant.Applications.First().Experience</td>
+                    <td class="applicant-info">@applicant.Applications.First().Date</td>
+                    <td class="applicant-info">
+                        @if (!string.IsNullOrEmpty(applicant.Applications.First().Resume))
+                        {
+                            <a href="@Url.Action("DownloadResume", "Applicant", new { applicationId = applicant.Applications.First().ApplicationId })" class="btn btn-outline-primary btn-sm" title="Download Resume">
+                                <i class="fa fa-download" aria-hidden="true"></i> Download
+                            </a>
+                        }
+                    </td>
+                    <td class="applicant-info">
+                        @if (applicant.Applications.First().Status == "Approved")
+                        {
+                            <p class="text-success">Approved</p>
+                        }
+                        else if (applicant.Applications.First().Status == "Declined")
+                        {
+                            <p class="text-danger">Declined</p>
+                        }
+                        else
+                        {
+                            <p id="status-@applicant.Applications.First().ApplicationId">Pending</p>
+                            <div id="action-buttons-@applicant.Applications.First().ApplicationId">
+                                <button onclick="approveApplication('@applicant.Applications.First().ApplicationId')" class="btn btn-success btn-sm">
+                                    <i class="fa fa-check" aria-hidden="true"></i> Approve
+                                </button>
+                                <button onclick="declineApplication('@applicant.Applications.First().ApplicationId')" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-times" aria-hidden="true"></i> Decline
+                                </button>
+                            </div>
+                        }
+                    </td>
+                    @if (applicant.Applications.First().Status == "Approved")
+                    {
+                        <td class="applicant-info">
+                            <a href="@Url.Action("Schedule", "Interview", new { applicationId = applicant.Applications.First().ApplicationId })" class="btn btn-primary btn-sm" title="Schedule Interview">
+                                <i class="fa fa-calendar" aria-hidden="true"></i> Schedule Interview
+                            </a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="applicant-info"></td>
+                    }
+                </tr>
+            </table>
+        </div>
+    }
+}
+else
+{
+    <p class="text-muted">No applicants found for this job.</p>
+}
+
+<script>
+    function approveApplication(applicationId) {
+        $.post('@Url.Action("ApproveApplication", "Employer")', { applicationId: applicationId })
+            .done(function () {
+                $('#status-' + applicationId).html('<p class="text-success">Approved</p>');
+                $('#action-buttons-' + applicationId).html('');
+            })
+            .fail(function () {
+                alert('Failed to approve application.');
+            });
+    }
+
+    function declineApplication(applicationId) {
+        $.post('@Url.Action("DeclineApplication", "Employer")', { applicationId: applicationId })
+            .done(function () {
+                $('#status-' + applicationId).html('<p class="text-danger">Declined</p>');
+                $('#action-buttons-' + applicationId).html('');
+            })
+            .fail(function () {
+                alert('Failed to decline application.');
+            });
+    }
+</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
