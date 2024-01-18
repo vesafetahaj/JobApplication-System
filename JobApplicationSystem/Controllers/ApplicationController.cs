@@ -51,7 +51,7 @@ namespace JobApplicationSystem.Controllers
 
                 if (!_applicationService.CheckIfApplicantApplied(application.Applicant, application.Job))
                 {
-                    application.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); ;
+                    application.Date = DateTime.Now.ToString("yyyy-MM-dd"); 
                     await _applicationService.AddApplicationAsync(application);
                     return RedirectToAction("Applications", "Applicant");
                 }

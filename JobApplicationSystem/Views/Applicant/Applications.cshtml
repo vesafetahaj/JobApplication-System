@@ -27,6 +27,7 @@
                     <th>Resume</th>
                     <th>Date</th>
                     <th>Status</th>
+                    <th>Interview Details</th> <!-- New column for interview details -->
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +42,7 @@
                             @if (!string.IsNullOrEmpty(application.Resume))
                             {
                                 <a href="@Url.Action("DownloadResume", "Applicant", new { applicationId = application.ApplicationId })">
-                                    Download Resume
+                                    Download
                                 </a>
                             }
                             else
@@ -62,6 +63,24 @@
                             else
                             {
                                 <span class="text-warning">Pending</span>
+                            }
+                        </td>
+                        <td>
+                            @if (application.Status == "Approved" && application.Interviews.Any())
+                            {
+                                <p><strong>Time: </strong>
+                                    @application.Interviews.First().Time
+                                </p>
+                                <p><strong>Location: </strong>
+                                    @application.Interviews.First().Location
+                                </p>
+                            }else if(application.Status == "Declined")
+                            {
+                                <span>--</span>
+                            }
+                            else
+                            {
+                                <span>No interview details available</span>
                             }
                         </td>
 

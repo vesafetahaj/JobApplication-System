@@ -64,6 +64,6 @@ namespace JobApplicationSystem.DAL.Repositories
 
             return interviews;
         }
-        
+    
     }
 }

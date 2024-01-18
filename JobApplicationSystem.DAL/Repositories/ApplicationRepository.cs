@@ -79,14 +79,14 @@ namespace JobApplicationSystem.DAL.Repositories
         }
         public async Task<IEnumerable<Application>> GetApplicationsByUserIdAsync(string userId)
         {
-            return await _dbContext.Applications
+            return await _dbContext.Applications.Include(a => a.Interviews)
                 .Where(a => a.ApplicantNavigation.User == userId).Include(a => a.JobNavigation)
                 .ToListAsync();
         }
         public async Task<IEnumerable<Application>> GetApplicationsByJobIdAsync(int jobId)
         {
             return await _dbContext.Applications
-                .Include(a => a.ApplicantNavigation)
+                .Include(a => a.ApplicantNavigation).Include(a => a.Interviews)
                 .Where(a => a.Job == jobId)
                 .ToListAsync();
         }
