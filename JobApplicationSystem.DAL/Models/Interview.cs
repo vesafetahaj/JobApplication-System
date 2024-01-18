@@ -10,6 +10,7 @@ namespace JobApplicationSystem.DAL.Models
         public string? Location { get; set; }
         public string? Feedback { get; set; }
         public int? Application { get; set; }
+        public int? Review { get; set; }
 
         public virtual Application? ApplicationNavigation { get; set; }
     }

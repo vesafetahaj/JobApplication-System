@@ -38,10 +38,12 @@ namespace JobApplicationSystem.Controllers
             {
                 int? jobId = application.Job;
                 application.Job = jobId;
+                
 
                 string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var applicant = await _applicantService.GetApplicantDetailsAsync(loggedInUserId);
                 application.Applicant = applicant.ApplicantId;
+                application.Education = applicant.Education;
 
                 if (!_applicationService.CheckIfApplicantApplied(application.Applicant, application.Job))
                 {

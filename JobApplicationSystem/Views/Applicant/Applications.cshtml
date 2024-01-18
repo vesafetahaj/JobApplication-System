@@ -25,6 +25,7 @@
                     <th>Education</th>
                     <th>Experience</th>
                     <th>Resume</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,6 +48,21 @@
                                 <span>No resume available</span>
                             }
                         </td>
+                        <td>
+                            @if (application.Status == "Approved")
+                            {
+                                <span class="text-success">@application.Status</span>
+                            }
+                            else if (application.Status == "Declined")
+                            {
+                                <span class="text-danger">@application.Status</span>
+                            }
+                            else
+                            {
+                                <span class="text-warning">Pending</span>
+                            }
+                        </td>
+
                     </tr>
                 }
             </tbody>

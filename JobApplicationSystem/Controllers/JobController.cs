@@ -80,6 +80,7 @@ namespace JobApplicationSystem.Controllers
                     if (employer != null)
                     {
                         job.Employer = employer.EmployerId;
+                        job.Company = employer.Company;
 
                         await _jobService.AddJobAsync(job);
 
