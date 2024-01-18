@@ -2,6 +2,7 @@
 using JobApplicationSystem.BAL.Services;
 using JobApplicationSystem.DAL.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobApplicationSystem.Controllers
 {
@@ -18,6 +19,8 @@ namespace JobApplicationSystem.Controllers
             _applicationService = applicationService;
         }
 
+        [Authorize(Roles = "Applicant")]
+
         public async Task<IActionResult> ApplyForJob(int jobId)
         {
            
@@ -31,6 +34,8 @@ namespace JobApplicationSystem.Controllers
 
             return View(applicationModel);
         }
+
+        [Authorize(Roles = "Applicant")]
         [HttpPost]
         public async Task<IActionResult> ApplyForJob([Bind("ApplicationId,Education,Experience,Date,Applicant,Job,Resume")] Application application)
         {

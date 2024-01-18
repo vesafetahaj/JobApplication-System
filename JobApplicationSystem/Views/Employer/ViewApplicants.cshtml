@@ -109,27 +109,22 @@
                             </div>
                         }
                     </td>
+
                     @if (applicant.Applications.First().Status == "Approved")
                     {
                         <td class="applicant-info">
-                            @if (applicant.Applications.First().Interviews.Any(i => i.Application.HasValue))
-                            {
-                                <button class="btn btn-primary btn-sm" disabled>
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Scheduled Interview
-                                </button>
-                            }
-                            else
-                            {
+                         
                                 <a href="@Url.Action("Schedule", "Interview", new { applicationId = applicant.Applications.First().ApplicationId })" class="btn btn-primary btn-sm" title="Schedule Interview" id="schedule-button-@applicant.Applications.First().ApplicationId">
                                     <i class="fa fa-calendar" aria-hidden="true"></i> Schedule Interview
                                 </a>
-                            }
+                            
                         </td>
                     }
                     else
                     {
                         <td class="applicant-info"></td>
                     }
+
 
 
 

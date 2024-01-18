@@ -1,34 +1,71 @@
 ﻿@model JobApplicationSystem.DAL.Models.Interview
 @{
-
     Layout = "~/Views/Shared/_EmployerLayout.cshtml";
 }
-<h2>Schedule Interview</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<style>
+    body {
+        background-color: #80624b;
+    }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Time)
-        @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+    .form-container {
+        max-width: 40%;
+        margin: 0 auto;
+        background-color: #fff; 
+        border: 1px solid #ccc; 
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 50px; 
+        padding: 30px;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 form-container">
+            <h3 class="text-center">Schedule Interview</h3>
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+                <p class="text-center">
+                    View all scheduled interviews
+                    <a href="@Url.Action("EmployerScheduledInterviews", "Interview")">here</a>.
+                </p>
+            }
+            else
+            {
+                @using (Html.BeginForm("Schedule", "Interview", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Time)
+                        @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Location)
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Feedback)
+                        @Html.EditorFor(model => model.Feedback, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Feedback, "", new { @class = "text-danger" })
+                    </div>
+
+                    <input type="hidden" asp-for="Application" value="@Model.Application" />
+                    <br />
+                    <div class="form-group text-center">
+                        <input type="submit" value="Schedule Interview" class="btn btn-primary" />
+                    </div>
+                }
+            }
+        </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Location)
-        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
-    </div>
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Feedback)
-        @Html.EditorFor(model => model.Feedback, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Feedback, "", new { @class = "text-danger" })
-    </div>
-    <input type="hidden" asp-for="Application" value="@Model.Application" />
-    <div class="form-group">
-        <input type="submit" value="Schedule Interview" class="btn btn-primary" />
-    </div>
-}
+</div>

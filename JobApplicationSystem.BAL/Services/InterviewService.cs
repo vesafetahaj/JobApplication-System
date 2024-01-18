@@ -51,5 +51,6 @@ namespace JobApplicationSystem.BAL.Services
            return await _interviewRepository.GetScheduledInterviewsForEmployerAsync(employerId);
 
         }
+
     }
 }

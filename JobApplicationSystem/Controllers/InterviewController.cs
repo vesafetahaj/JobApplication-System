@@ -3,6 +3,7 @@ using JobApplicationSystem.BAL.Services;
 using JobApplicationSystem.DAL.Models;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 public class InterviewController : Controller
 {
@@ -17,13 +18,15 @@ public class InterviewController : Controller
         _employerService = employerService;
     }
 
+    [Authorize(Roles = "Employer")]
+
     public async Task<IActionResult> Schedule(int applicationId)
     {
         var application = await _applicationService.GetApplicationByIdAsync(applicationId);
 
         if (application == null)
         {
-            // Handle the case where the application is not found
+            
             return RedirectToAction("UnauthorizedJob", "Job");
         }
 
@@ -37,6 +40,7 @@ public class InterviewController : Controller
     }
 
 
+    [Authorize(Roles = "Employer")]
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -46,14 +50,15 @@ public class InterviewController : Controller
         {
            
             await _interviewService.ScheduleInterviewAsync(interview);
-            return RedirectToAction("Index", "Job"); // Redirect to job listing or another appropriate page
+            return RedirectToAction("Index", "Job"); 
         }
 
         return View(interview);
     }
 
 
-    // GET: Interview/Details/5
+    [Authorize(Roles = "Employer")]
+
     public async Task<IActionResult> Details(int id)
     {
         var interview = await _interviewService.GetInterviewByIdAsync(id);
@@ -80,7 +85,7 @@ public class InterviewController : Controller
         if (ModelState.IsValid)
         {
             await _interviewService.UpdateInterviewAsync(interview);
-            return RedirectToAction("Index", "Job"); // Redirect to job listing or another appropriate page
+            return RedirectToAction("Index", "Job"); 
         }
 
         return View(interview);
@@ -99,8 +104,11 @@ public class InterviewController : Controller
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         await _interviewService.DeleteInterviewAsync(id);
-        return RedirectToAction("Index", "Job"); // Redirect to job listing or another appropriate page
+        return RedirectToAction("Index", "Job"); 
     }
+
+    [Authorize(Roles = "Employer")]
+
     public async Task<IActionResult> EmployerScheduledInterviews()
     {
         string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
