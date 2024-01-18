@@ -32,13 +32,12 @@ namespace JobApplicationSystem.Controllers
             return View(applicationModel);
         }
         [HttpPost]
-        public async Task<IActionResult> ApplyForJob([Bind("ApplicationId,Education,Experience,Applicant,Job,Resume")] Application application)
+        public async Task<IActionResult> ApplyForJob([Bind("ApplicationId,Education,Experience,Date,Applicant,Job,Resume")] Application application)
         {
             try
             {
                 int? jobId = application.Job;
                 application.Job = jobId;
-                
 
                 string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var applicant = await _applicantService.GetApplicantDetailsAsync(loggedInUserId);
@@ -47,12 +46,13 @@ namespace JobApplicationSystem.Controllers
 
                 if (!_applicationService.CheckIfApplicantApplied(application.Applicant, application.Job))
                 {
+                    application.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); ;
                     await _applicationService.AddApplicationAsync(application);
                     return RedirectToAction("Applications", "Applicant");
                 }
                 else
                 {
-                    return RedirectToAction("UnauthorizedApplication");
+                    ViewData["ErrorMessage"] = "You have already applied for this job.";
                 }
             }
             catch (ArgumentException ex)
@@ -70,6 +70,7 @@ namespace JobApplicationSystem.Controllers
 
             return View(application);
         }
+
 
         public IActionResult UnauthorizedApplication()
         {

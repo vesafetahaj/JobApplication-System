@@ -8,7 +8,6 @@
     .container {
         max-width: 600px;
         margin: 0 auto;
-        margin-top: 40px;
     }
 
     h4 {
@@ -73,15 +72,45 @@
             background-color: #483F38;
             border-color: #483F38;
         }
+
+    body {
+        background-image: url('@Url.Content("~/images/image.png")');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 40px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h4 {
+        text-align: center;
+    }
 </style>
 
 <div class="container">
+    @if (ViewData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @ViewData["ErrorMessage"]
+        </div>
+    }
     <h4>Application Details</h4>
     <hr/>
 
     <div class="job-info">
-        <p><strong>Job Title:</strong> @Model.JobNavigation.Title</p>
-        <p><strong>Company:</strong> @Model.JobNavigation.Company</p>
+        <p><strong>Job Title:</strong> @Model.JobNavigation?.Title</p>
+        <p><strong>Company:</strong> @Model.JobNavigation?.Company</p>
     </div>
 
     <form asp-action="ApplyForJob">
@@ -99,7 +128,7 @@
         </div>
 
 
-        <input type="hidden" name="Job" value="@Model.JobNavigation.JobId">
+        <input type="hidden" name="Job" value="@Model.JobNavigation?.JobId">
 
         <div class="btn-row">
             <input type="submit" value="Apply" class="btn btn-primary" />

@@ -57,8 +57,20 @@
       "PackagePath": "staticwebassets\\images\\businessman.png"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\company-representatives-reading-applicant-resume-hiring.jpg",
+      "PackagePath": "staticwebassets\\images\\company-representatives-reading-applicant-resume-hiring.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\form.png",
+      "PackagePath": "staticwebassets\\images\\form.png"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\home.png",
       "PackagePath": "staticwebassets\\images\\home.png"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\image.png",
+      "PackagePath": "staticwebassets\\images\\image.png"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\list (1).png",

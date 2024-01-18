@@ -145,32 +145,54 @@ namespace JobApplicationSystem.Controllers
 
         public async Task<IActionResult> ViewApplicants(int jobId)
         {
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
+
             var job = await _jobService.GetJobByIdAsync(jobId);
 
-            if (job == null)
+            if (job == null || job.Employer != employer.EmployerId)
             {
-                return NotFound();
+                return RedirectToAction("UnauthorizedJob", "Job");
             }
 
             var applicants = await _applicationService.GetApplicantsForJobAsync(jobId);
 
             ViewBag.Job = job;
             ViewBag.Applicants = applicants;
-      
 
             return View();
         }
 
-        public async Task<IActionResult> ViewApplicantProfile(int applicantId)
-        {
-            var applicant = await _applicantService.GetApplicantByIdAsync(applicantId);
 
-            if (applicant == null)
+        public async Task<IActionResult> ApproveApplication(int applicationId)
+        {
+            var application = await _applicationService.GetApplicationByIdAsync(applicationId);
+
+            if (application != null)
             {
-                return NotFound();
+                application.Status = "Approved";
+
+                await _applicationService.UpdateApplicationAsync(applicationId, application);
+
+
             }
 
-            return View(applicant);
+            return Ok();
+        }
+
+        public async Task<IActionResult> DeclineApplication(int applicationId)
+        {
+            var application = await _applicationService.GetApplicationByIdAsync(applicationId);
+
+            if (application != null)
+            {
+                application.Status = "Declined";
+
+                await _applicationService.UpdateApplicationAsync(applicationId, application);
+
+            }
+            return Ok();
+
         }
         public ActionResult Index()
         {

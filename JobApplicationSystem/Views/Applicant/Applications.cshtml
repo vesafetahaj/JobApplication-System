@@ -25,6 +25,7 @@
                     <th>Education</th>
                     <th>Experience</th>
                     <th>Resume</th>
+                    <th>Date</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -48,6 +49,7 @@
                                 <span>No resume available</span>
                             }
                         </td>
+                        <td>@application.Date</td>
                         <td>
                             @if (application.Status == "Approved")
                             {

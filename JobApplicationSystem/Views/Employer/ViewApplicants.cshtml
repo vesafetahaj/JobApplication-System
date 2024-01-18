@@ -151,8 +151,8 @@ else
                 $('#status-' + applicationId).html('<p class="text-success">Approved</p>');
                 $('#action-buttons-' + applicationId).html('');
             })
-            .fail(function () {
-                alert('Failed to approve application.');
+            .fail(function (xhr, status, error) {
+                alert('Failed to approve application. Status: ' + status + ', Error: ' + error);
             });
     }
 
@@ -162,8 +162,8 @@ else
                 $('#status-' + applicationId).html('<p class="text-danger">Declined</p>');
                 $('#action-buttons-' + applicationId).html('');
             })
-            .fail(function () {
-                alert('Failed to decline application.');
+            .fail(function (xhr, status, error) {
+                alert('Failed to decline application. Status: ' + status + ', Error: ' + error);
             });
     }
 </script>
