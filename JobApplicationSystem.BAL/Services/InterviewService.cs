@@ -11,6 +11,7 @@ namespace JobApplicationSystem.BAL.Services
         private readonly IInterviewRepository<Interview> _interviewRepository;
         private readonly IJobRepository<Job> _jobRepository;
 
+
         public InterviewService(IInterviewRepository<Interview> interviewRepository, IJobRepository<Job> jobRepository)
         {
             _interviewRepository = interviewRepository;

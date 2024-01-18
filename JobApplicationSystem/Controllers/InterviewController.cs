@@ -26,14 +26,14 @@ public class InterviewController : Controller
 
         if (application == null)
         {
-            
+
             return RedirectToAction("UnauthorizedJob", "Job");
         }
 
         var interviewModel = new Interview
         {
             Application = applicationId,
-            ApplicationNavigation = application, 
+            ApplicationNavigation = application,
         };
 
         return View(interviewModel);
@@ -50,7 +50,7 @@ public class InterviewController : Controller
         {
            
             await _interviewService.ScheduleInterviewAsync(interview);
-            return RedirectToAction("Index", "Job"); 
+            return RedirectToAction("EmployerScheduledInterviews");
         }
 
         return View(interview);
@@ -65,14 +65,12 @@ public class InterviewController : Controller
         return View(interview);
     }
 
-    // GET: Interview/Edit/5
     public async Task<IActionResult> Edit(int id)
     {
         var interview = await _interviewService.GetInterviewByIdAsync(id);
         return View(interview);
     }
 
-    // POST: Interview/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, Interview interview)
@@ -85,26 +83,24 @@ public class InterviewController : Controller
         if (ModelState.IsValid)
         {
             await _interviewService.UpdateInterviewAsync(interview);
-            return RedirectToAction("Index", "Job"); 
+            return RedirectToAction("EmployerScheduledInterviews"); 
         }
 
         return View(interview);
     }
 
-    // GET: Interview/Delete/5
     public async Task<IActionResult> Delete(int id)
     {
         var interview = await _interviewService.GetInterviewByIdAsync(id);
         return View(interview);
     }
 
-    // POST: Interview/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         await _interviewService.DeleteInterviewAsync(id);
-        return RedirectToAction("Index", "Job"); 
+        return RedirectToAction("EmployerScheduledInterviews"); 
     }
 
     [Authorize(Roles = "Employer")]

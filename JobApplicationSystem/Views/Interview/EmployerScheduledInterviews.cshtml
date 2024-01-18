@@ -3,38 +3,55 @@
 @{
     ViewData["Title"] = "Employer Scheduled Interviews";
     Layout = "~/Views/Shared/_EmployerLayout.cshtml";
-    
 }
-<h1>Your Scheduled Interviews</h1>
+<style>
+    .custom-thead {
+        background-color: #4d331f;
+        color: white;
+    }
+</style>
+<h1 class="text-center mb-4">Your Scheduled Interviews</h1>
+<hr />
+<div class="container mt-4">
 
-@if (Model != null && Model.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Job Position</th>
-                <th>Time</th>
-                <th>Location</th>
-                <th>Applicant</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var interview in Model)
-            {
-                <tr>
-                    <td>@interview.ApplicationNavigation?.JobNavigation?.Title</td>
-                    <td>@interview.Time</td>
-                    <td>@interview.Location</td>
-                    <td>@interview.ApplicationNavigation?.ApplicantNavigation?.Name @interview.ApplicationNavigation?.ApplicantNavigation?.Surname</td>
-          
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No scheduled interviews for this employer.</p>
-}
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered table-hover">
+                <thead class="custom-thead">
+                    <tr>
+                        <th scope="col">Job Position</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Applicant</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var interview in Model)
+                    {
+                        <tr>
+                            <td>@interview.ApplicationNavigation?.JobNavigation?.Title</td>
+                            <td>@interview.Time</td>
+                            <td>@interview.Location</td>
+                            <td>@interview.ApplicationNavigation?.ApplicantNavigation?.Name @interview.ApplicationNavigation?.ApplicantNavigation?.Surname</td>
+                            <td>
+                                <a asp-controller="Interview" asp-action="Edit" asp-route-id="@interview.InterviewId" class="btn btn-primary btn-sm">Edit</a>
 
-<a asp-controller="Job" asp-action="Index">Back to Job Listings</a>
+                                <a asp-controller="Interview" asp-action="Delete" asp-route-id="@interview.InterviewId" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning mt-4" role="alert">
+            No scheduled interviews for this employer.
+        </div>
+    }
+
+    <a asp-controller="Job" asp-action="Index" class="btn btn-secondary mt-4">Back to Job Listings</a>
+</div>
