@@ -11,11 +11,11 @@
     .form-container {
         max-width: 40%;
         margin: 0 auto;
-        background-color: #fff; 
-        border: 1px solid #ccc; 
+        background-color: #fff;
+        border: 1px solid #ccc;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-top: 50px; 
+        margin-top: 50px;
         padding: 30px;
     }
 </style>
@@ -43,26 +43,26 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Time)
-                        @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter interview time" } })
                         @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
                     </div>
-
+                    <br />
                     <div class="form-group">
                         @Html.LabelFor(model => model.Location)
-                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter interview location" } })
                         @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
                     </div>
-
+                    <br />
                     <div class="form-group">
                         @Html.LabelFor(model => model.Feedback)
-                        @Html.EditorFor(model => model.Feedback, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Feedback, new { htmlAttributes = new { @class = "form-control", placeholder = "Provide feedback (if any)" } })
                         @Html.ValidationMessageFor(model => model.Feedback, "", new { @class = "text-danger" })
                     </div>
 
                     <input type="hidden" asp-for="Application" value="@Model.Application" />
                     <br />
                     <div class="form-group text-center">
-                        <input type="submit" value="Schedule Interview" class="btn btn-primary" />
+                        <input type="submit" value="Done" class="btn btn-primary" />
                     </div>
                 }
             }

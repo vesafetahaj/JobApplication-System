@@ -73,6 +73,10 @@
       "PackagePath": "staticwebassets\\images\\image.png"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\job-interview.png",
+      "PackagePath": "staticwebassets\\images\\job-interview.png"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\list (1).png",
       "PackagePath": "staticwebassets\\images\\list (1).png"
     },
