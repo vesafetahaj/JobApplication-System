@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "MhS57Oen8+L8cExYdkU05QkbBBJXQm7E1IDJlddO3xM=",
+=======
+  "Hash": "wH/sZfhxIjm0h0ph3a+8QacJ83sWM7PRPdEC4CXGw/E=",
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
   "Source": "JobApplicationSystem",
   "BasePath": "_content/JobApplicationSystem",
   "Mode": "Default",
@@ -1207,6 +1211,7 @@
       "OriginalItemSpec": "wwwroot\\files\\srs.docx"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\146007.png",
       "SourceId": "JobApplicationSystem",
       "SourceType": "Discovered",
@@ -1224,6 +1229,8 @@
       "OriginalItemSpec": "wwwroot\\images\\146007.png"
     },
     {
+=======
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\8hO4Ijb9_400x400.jpg",
       "SourceId": "JobApplicationSystem",
       "SourceType": "Discovered",
@@ -1275,12 +1282,20 @@
       "OriginalItemSpec": "wwwroot\\images\\businessman.png"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\company-representatives-reading-applicant-resume-hiring.jpg",
+=======
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\colleagues-giving-fist-bump.jpg",
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
       "SourceId": "JobApplicationSystem",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\",
       "BasePath": "_content/JobApplicationSystem",
+<<<<<<< HEAD
       "RelativePath": "images/company-representatives-reading-applicant-resume-hiring.jpg",
+=======
+      "RelativePath": "images/colleagues-giving-fist-bump.jpg",
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1289,6 +1304,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\images\\company-representatives-reading-applicant-resume-hiring.jpg"
     },
     {
@@ -1307,6 +1323,9 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\form.png"
+=======
+      "OriginalItemSpec": "wwwroot\\images\\colleagues-giving-fist-bump.jpg"
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\home.png",

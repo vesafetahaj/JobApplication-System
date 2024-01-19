@@ -9,10 +9,18 @@
         background-color: #4d331f;
         color: white;
     }
+
+    .status-approved {
+        color: green;
+    }
+
+    .status-declined {
+        color: red;
+    }
 </style>
 
 <h1>Applications</h1>
-<br />
+<hr />
 
 @if (Model.Any())
 {
@@ -25,9 +33,13 @@
                     <th>Education</th>
                     <th>Experience</th>
                     <th>Resume</th>
+<<<<<<< HEAD
                     <th>Date</th>
                     <th>Status</th>
                     <th>Interview Details</th> <!-- New column for interview details -->
+=======
+                    <th>Status</th>
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +62,7 @@
                                 <span>No resume available</span>
                             }
                         </td>
+<<<<<<< HEAD
                         <td>@application.Date</td>
                         <td>
                             @if (application.Status == "Approved")
@@ -84,6 +97,18 @@
                             }
                         </td>
 
+=======
+                        <td>
+                            @if (string.IsNullOrEmpty(application.Status))
+                            {
+                                <span>Pending</span>
+                            }
+                            else
+                            {
+                                @application.Status
+                            }
+                        </td>
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
                     </tr>
                 }
             </tbody>

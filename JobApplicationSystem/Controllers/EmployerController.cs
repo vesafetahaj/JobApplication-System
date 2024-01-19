@@ -153,7 +153,11 @@ namespace JobApplicationSystem.Controllers
 
             if (job == null || job.Employer != employer.EmployerId)
             {
+<<<<<<< HEAD
                 return RedirectToAction("UnauthorizedJob", "Job");
+=======
+                return RedirectToAction("UnauthorizedJob", "Job"); 
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
             }
 
             var applicants = await _applicationService.GetApplicantsForJobAsync(jobId);
@@ -175,7 +179,11 @@ namespace JobApplicationSystem.Controllers
 
                 await _applicationService.UpdateApplicationAsync(applicationId, application);
 
+<<<<<<< HEAD
 
+=======
+               
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
             }
 
             return Ok();

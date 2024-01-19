@@ -37,10 +37,13 @@
       "PackagePath": "staticwebassets\\files\\srs.docx"
     },
     {
+<<<<<<< HEAD
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\146007.png",
       "PackagePath": "staticwebassets\\images\\146007.png"
     },
     {
+=======
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\8hO4Ijb9_400x400.jpg",
       "PackagePath": "staticwebassets\\images\\8hO4Ijb9_400x400.jpg"
     },
@@ -57,12 +60,17 @@
       "PackagePath": "staticwebassets\\images\\businessman.png"
     },
     {
+<<<<<<< HEAD
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\company-representatives-reading-applicant-resume-hiring.jpg",
       "PackagePath": "staticwebassets\\images\\company-representatives-reading-applicant-resume-hiring.jpg"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\form.png",
       "PackagePath": "staticwebassets\\images\\form.png"
+=======
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\colleagues-giving-fist-bump.jpg",
+      "PackagePath": "staticwebassets\\images\\colleagues-giving-fist-bump.jpg"
+>>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\home.png",
