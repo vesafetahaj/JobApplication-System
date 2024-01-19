@@ -35,11 +35,32 @@ namespace JobApplicationSystem.DAL.Repositories
                 .FirstOrDefaultAsync(i => i.InterviewId == interviewId);
         }
 
-        public async Task UpdateInterviewAsync(Interview interview)
+        public async Task UpdateInterviewAsync(Interview updatedInterview)
         {
-            _context.Interviews.Update(interview);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var existingInterview = await _context.Interviews
+                                                        .FirstOrDefaultAsync(i => i.InterviewId == updatedInterview.InterviewId);
+
+                if (existingInterview != null)
+                {
+                    existingInterview.Time = updatedInterview.Time;
+                    existingInterview.Location = updatedInterview.Location;
+                    existingInterview.Feedback = updatedInterview.Feedback;
+
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Interview with ID {updatedInterview.InterviewId} not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while updating the interview.", ex);
+            }
         }
+
 
         public async Task DeleteInterviewAsync(int interviewId)
         {

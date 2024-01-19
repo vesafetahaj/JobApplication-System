@@ -1,44 +1,72 @@
 ﻿@model JobApplicationSystem.DAL.Models.Interview
 @{
-   
     Layout = "~/Views/Shared/_EmployerLayout.cshtml";
 }
 
-<h1>Delete Interview</h1>
-
-<div>
-    <h4>Are you sure you want to delete this interview?</h4>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Time)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Time)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-       
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Feedback)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Feedback)
-        </dd>
-
-
-    </dl>
-
-    @using (Html.BeginForm("DeleteConfirmed", "Interview", new { id = Model.InterviewId }, FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <input type="submit" value="Delete" class="btn btn-danger" />
+<style>
+    body {
+        background-color: #80624b;
     }
-    @Html.ActionLink("Cancel", "Interview", "EmployerScheduledInterviews", new { }, new { @class = "btn btn-secondary" })
+
+    .form-container {
+        max-width: 40%;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+        padding: 30px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 form-container">
+            <h3 class="text-center">Delete Interview</h3>
+            <hr />
+
+            <div>
+                <h6 class="text-center">Are you sure you want to delete this interview?</h6>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Time)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Time)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Location)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Location)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Feedback)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Feedback)
+                    </dd>
+                </dl>
+
+                <div class="btn-container">
+                    @using (Html.BeginForm("Delete", "Interview", new { id = Model.InterviewId }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    }
+
+                    @Html.ActionLink("Cancel", "EmployerScheduledInterviews", "Interview", new { }, new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

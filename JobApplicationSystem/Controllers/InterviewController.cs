@@ -78,7 +78,7 @@ public class InterviewController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Employer")]
-    public async Task<IActionResult> Edit(int id, Interview interview)
+    public async Task<IActionResult> Edit(int id,Interview interview)
     {
         if (id != interview.InterviewId)
         {

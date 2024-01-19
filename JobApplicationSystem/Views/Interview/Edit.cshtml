@@ -1,33 +1,76 @@
 ﻿@model JobApplicationSystem.DAL.Models.Interview
+
 @{
     Layout = "~/Views/Shared/_EmployerLayout.cshtml";
 }
 
-<h2>Edit Interview</h2>
+<style>
+    body {
+        background-color: #80624b;
+    }
 
-<form method="post" action="@Url.Action("Edit", "Interview")">
-    @Html.AntiForgeryToken()
-    <input type="hidden" name="Application" value="@Model.Application" />
+    .form-container {
+        max-width: 40%;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+        padding: 30px;
+    }
+</style>
 
-    <div class="form-group">
-        <label asp-for="Time" class="control-label"></label>
-        <input asp-for="Time" class="form-control" />
-        <span asp-validation-for="Time" class="text-danger"></span>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 form-container">
+            <h3 class="text-center">Edit Interview</h3>
+            <hr />
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+                <p class="text-center">
+                    View all scheduled interviews
+                    <a href="@Url.Action("EmployerScheduledInterviews", "Interview")">here</a>.
+                </p>
+            }
+            else
+            {
+                @using (Html.BeginForm("Edit", "Interview", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.HiddenFor(model => model.InterviewId)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Time)
+                        @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter interview time" } })
+                        @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Location)
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter interview location" } })
+                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Feedback)
+                        @Html.EditorFor(model => model.Feedback, new { htmlAttributes = new { @class = "form-control", placeholder = "Provide feedback (if any)" } })
+                        @Html.ValidationMessageFor(model => model.Feedback, "", new { @class = "text-danger" })
+                    </div>
+
+                    <br />
+                    <div class="form-group text-center">
+                        <input type="submit" value="Save Changes" class="btn btn-primary" />
+
+                        <a href="@Url.Action("EmployerScheduledInterviews", "Interview")" class="btn btn-secondary">Go Back</a>
+                    </div>
+                }
+            }
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Location" class="control-label"></label>
-        <input asp-for="Location" class="form-control" />
-        <span asp-validation-for="Location" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Feedback" class="control-label"></label>
-        <input asp-for="Feedback" class="form-control" />
-        <span asp-validation-for="Feedback" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </div>
-</form>
+</div>
