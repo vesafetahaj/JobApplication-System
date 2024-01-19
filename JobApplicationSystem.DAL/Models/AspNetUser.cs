@@ -10,8 +10,6 @@ namespace JobApplicationSystem.DAL.Models
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
             AspNetUserTokens = new HashSet<AspNetUserToken>();
-            MessageReceiverNavigations = new HashSet<Message>();
-            MessageSenderNavigations = new HashSet<Message>();
             Roles = new HashSet<AspNetRole>();
         }
 
@@ -37,8 +35,6 @@ namespace JobApplicationSystem.DAL.Models
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
-        public virtual ICollection<Message> MessageReceiverNavigations { get; set; }
-        public virtual ICollection<Message> MessageSenderNavigations { get; set; }
 
         public virtual ICollection<AspNetRole> Roles { get; set; }
     }

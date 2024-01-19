@@ -13,13 +13,11 @@ namespace JobApplicationSystem.BAL.Services
     public class ApplicationService : IApplicationService
     {
         private readonly IApplicationRepository<Application> _applicationRepository;
-        private readonly IJobRepository<Job> _jobRepository;
       
 
-        public ApplicationService(IApplicationRepository<Application> applicationRepository, IJobRepository<Job> jobRepository)
+        public ApplicationService(IApplicationRepository<Application> applicationRepository)
         {
             _applicationRepository = applicationRepository;
-            _jobRepository = jobRepository;
         }
 
         public async Task<bool> AddApplicationAsync(Application application)

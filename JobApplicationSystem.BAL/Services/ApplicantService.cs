@@ -13,14 +13,12 @@ namespace JobApplicationSystem.BAL.Services
     public class ApplicantService : IApplicantService
     {
         private readonly IApplicantRepository<Applicant> _applicantRepository;
-        private readonly IJobRepository<Job> _jobRepository;
         private readonly IApplicationRepository<Application> _applicationRepository;
 
 
-        public ApplicantService(IApplicantRepository<Applicant> applicantRepository, IJobRepository<Job> jobRepository, IApplicationRepository<Application> applicationRepository)
+        public ApplicantService(IApplicantRepository<Applicant> applicantRepository, IApplicationRepository<Application> applicationRepository)
         {
             _applicantRepository = applicantRepository;
-            _jobRepository = jobRepository;
             _applicationRepository = applicationRepository;
         }
         public async Task<Applicant> GetApplicantDetailsAsync(string userId)

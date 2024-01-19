@@ -20,12 +20,14 @@ namespace JobApplicationSystem.Controllers
         }
 
         [Authorize(Roles = "Applicant")]
-
         public async Task<IActionResult> ApplyForJob(int jobId)
         {
-           
             var job = await _jobService.GetJobByIdAsync(jobId);
 
+            if (job.LastDateToApply < DateTime.Now)
+            {
+                ViewData["ErrorMessage"] = "The application deadline for this job has passed. You cannot apply.";
+            }
 
             var applicationModel = new Application
             {
@@ -34,6 +36,7 @@ namespace JobApplicationSystem.Controllers
 
             return View(applicationModel);
         }
+
 
         [Authorize(Roles = "Applicant")]
         [HttpPost]
@@ -75,7 +78,6 @@ namespace JobApplicationSystem.Controllers
 
             return View(application);
         }
-
 
         public IActionResult UnauthorizedApplication()
         {

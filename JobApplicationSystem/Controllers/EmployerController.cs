@@ -66,6 +66,7 @@ namespace JobApplicationSystem.Controllers
 
             return View(employer);
         }
+
         [HttpGet]
         public async Task<IActionResult> EditPersonalInfo()
         {

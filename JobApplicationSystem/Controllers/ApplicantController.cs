@@ -143,69 +143,7 @@ namespace JobApplicationSystem.Controllers
             return View();
         }
        
-        // GET: ApplicantController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ApplicantController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ApplicantController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ApplicantController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ApplicantController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ApplicantController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+       
         [Authorize(Roles = "Applicant")]
         [HttpGet]
         public async Task<IActionResult> Applications()
@@ -214,6 +152,7 @@ namespace JobApplicationSystem.Controllers
             var applications = await _applicantService.GetApplicationsByUserIdAsync(loggedInUserId);
             return View(applications);
         }
+
         [Authorize(Roles = "Applicant, Employer")]
         public IActionResult DownloadResume(int applicationId)
         {

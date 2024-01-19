@@ -20,7 +20,6 @@ namespace JobApplicationSystem.Controllers
         }
 
         [Authorize(Roles = "Employer")]
-
         public async Task<ActionResult> Index()
         {
             string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -38,7 +37,6 @@ namespace JobApplicationSystem.Controllers
         }
 
         [Authorize(Roles = "Employer, Applicant")]
-
         public async Task<ActionResult> Details(int id)
         {
             var job = await _jobService.GetJobByIdAsync(id);
@@ -52,7 +50,6 @@ namespace JobApplicationSystem.Controllers
         }
 
         [Authorize(Roles = "Employer")]
-
         public ActionResult CreateJob()
         {
             return View();
@@ -64,7 +61,6 @@ namespace JobApplicationSystem.Controllers
         }
 
         [Authorize(Roles = "Employer")]
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateJob(Job job)

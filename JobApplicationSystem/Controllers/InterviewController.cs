@@ -19,7 +19,6 @@ public class InterviewController : Controller
     }
 
     [Authorize(Roles = "Employer")]
-
     public async Task<IActionResult> Schedule(int applicationId)
     {
         var application = await _applicationService.GetApplicationByIdAsync(applicationId);
@@ -41,7 +40,6 @@ public class InterviewController : Controller
 
 
     [Authorize(Roles = "Employer")]
-
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Schedule(Interview interview)
@@ -58,21 +56,28 @@ public class InterviewController : Controller
 
 
     [Authorize(Roles = "Employer")]
-
     public async Task<IActionResult> Details(int id)
     {
         var interview = await _interviewService.GetInterviewByIdAsync(id);
         return View(interview);
     }
 
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Edit(int id)
     {
         var interview = await _interviewService.GetInterviewByIdAsync(id);
+
+        if (interview == null)
+        {
+            return NotFound();
+        }
+
         return View(interview);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Edit(int id, Interview interview)
     {
         if (id != interview.InterviewId)
@@ -82,29 +87,42 @@ public class InterviewController : Controller
 
         if (ModelState.IsValid)
         {
+            var existingInterview = await _interviewService.GetInterviewByIdAsync(id);
+
+            interview.Application = existingInterview.Application;
+
             await _interviewService.UpdateInterviewAsync(interview);
-            return RedirectToAction("EmployerScheduledInterviews"); 
+
+            return RedirectToAction("EmployerScheduledInterviews");
         }
 
         return View(interview);
     }
 
+
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Delete(int id)
     {
         var interview = await _interviewService.GetInterviewByIdAsync(id);
+
+        if (interview == null)
+        {
+            return NotFound();
+        }
+
         return View(interview);
     }
 
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         await _interviewService.DeleteInterviewAsync(id);
-        return RedirectToAction("EmployerScheduledInterviews"); 
+        return RedirectToAction("EmployerScheduledInterviews");
     }
 
     [Authorize(Roles = "Employer")]
-
     public async Task<IActionResult> EmployerScheduledInterviews()
     {
         string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);

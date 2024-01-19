@@ -26,12 +26,9 @@ namespace JobApplicationSystem.DAL.Data
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
-        public virtual DbSet<Company> Companies { get; set; } = null!;
         public virtual DbSet<Employer> Employers { get; set; } = null!;
         public virtual DbSet<Interview> Interviews { get; set; } = null!;
         public virtual DbSet<Job> Jobs { get; set; } = null!;
-        public virtual DbSet<Message> Messages { get; set; } = null!;
-        public virtual DbSet<Resume> Resumes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -257,25 +254,6 @@ namespace JobApplicationSystem.DAL.Data
                     .HasForeignKey(d => d.UserId);
             });
 
-            modelBuilder.Entity<Company>(entity =>
-            {
-                entity.ToTable("Company");
-
-                entity.Property(e => e.CompanyId).HasColumnName("CompanyID");
-
-                entity.Property(e => e.Description)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Location)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
             modelBuilder.Entity<Employer>(entity =>
             {
                 entity.ToTable("Employer");
@@ -370,39 +348,6 @@ namespace JobApplicationSystem.DAL.Data
                     .HasForeignKey(d => d.Employer)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Job_Employer1");
-            });
-
-            modelBuilder.Entity<Message>(entity =>
-            {
-                entity.ToTable("Message");
-
-                entity.Property(e => e.Date).HasColumnType("datetime");
-
-                entity.Property(e => e.Receiver).HasMaxLength(450);
-
-                entity.Property(e => e.Sender).HasMaxLength(450);
-
-                entity.HasOne(d => d.ReceiverNavigation)
-                    .WithMany(p => p.MessageReceiverNavigations)
-                    .HasForeignKey(d => d.Receiver)
-                    .HasConstraintName("FK_Message_AspNetUsers2");
-
-                entity.HasOne(d => d.SenderNavigation)
-                    .WithMany(p => p.MessageSenderNavigations)
-                    .HasForeignKey(d => d.Sender)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Message_AspNetUsers");
-            });
-
-            modelBuilder.Entity<Resume>(entity =>
-            {
-                entity.ToTable("Resume");
-
-                entity.Property(e => e.ResumeId).HasColumnName("ResumeID");
-
-                entity.Property(e => e.ResumeName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

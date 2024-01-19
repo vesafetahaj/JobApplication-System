@@ -9,13 +9,11 @@ namespace JobApplicationSystem.BAL.Services
     public class InterviewService : IInterviewService
     {
         private readonly IInterviewRepository<Interview> _interviewRepository;
-        private readonly IJobRepository<Job> _jobRepository;
 
 
-        public InterviewService(IInterviewRepository<Interview> interviewRepository, IJobRepository<Job> jobRepository)
+        public InterviewService(IInterviewRepository<Interview> interviewRepository)
         {
             _interviewRepository = interviewRepository;
-            _jobRepository = jobRepository;
         }
 
         public async Task ScheduleInterviewAsync(Interview interview)
