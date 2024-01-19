@@ -33,13 +33,10 @@
                     <th>Education</th>
                     <th>Experience</th>
                     <th>Resume</th>
-<<<<<<< HEAD
                     <th>Date</th>
                     <th>Status</th>
-                    <th>Interview Details</th> <!-- New column for interview details -->
-=======
-                    <th>Status</th>
->>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
+                    <th>Interview Details</th> 
+
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +59,7 @@
                                 <span>No resume available</span>
                             }
                         </td>
-<<<<<<< HEAD
+
                         <td>@application.Date</td>
                         <td>
                             @if (application.Status == "Approved")
@@ -97,18 +94,7 @@
                             }
                         </td>
 
-=======
-                        <td>
-                            @if (string.IsNullOrEmpty(application.Status))
-                            {
-                                <span>Pending</span>
-                            }
-                            else
-                            {
-                                @application.Status
-                            }
-                        </td>
->>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
+                        
                     </tr>
                 }
             </tbody>

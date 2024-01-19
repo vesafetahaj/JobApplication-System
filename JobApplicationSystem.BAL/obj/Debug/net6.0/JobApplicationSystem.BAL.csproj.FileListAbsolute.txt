@@ -1,4 +1,5 @@
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\bin\Debug\net6.0\JobApplicationSystem.BAL.deps.json
+C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\bin\Debug\net6.0\JobApplicationSystem.BAL.runtimeconfig.json
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\bin\Debug\net6.0\JobApplicationSystem.BAL.dll
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\bin\Debug\net6.0\JobApplicationSystem.BAL.pdb
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\bin\Debug\net6.0\JobApplicationSystem.DAL.dll
@@ -12,6 +13,5 @@ C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\obj\De
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\obj\Debug\net6.0\JobApplicationSystem.BAL.dll
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\obj\Debug\net6.0\refint\JobApplicationSystem.BAL.dll
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\obj\Debug\net6.0\JobApplicationSystem.BAL.pdb
-C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\obj\Debug\net6.0\ref\JobApplicationSystem.BAL.dll
-C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\bin\Debug\net6.0\JobApplicationSystem.BAL.runtimeconfig.json
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\obj\Debug\net6.0\JobApplicationSystem.BAL.genruntimeconfig.cache
+C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.BAL\obj\Debug\net6.0\ref\JobApplicationSystem.BAL.dll

@@ -17,10 +17,8 @@ namespace JobApplicationSystem.DAL.Models
         public int? Job { get; set; }
         public string? Resume { get; set; }
         public string? Status { get; set; }
-<<<<<<< HEAD
+
         public string? Date { get; set; }
-=======
->>>>>>> 536aa73c0a616172bcc080665ddbb5d47059d3e4
 
         public virtual Applicant? ApplicantNavigation { get; set; }
         public virtual Job? JobNavigation { get; set; }

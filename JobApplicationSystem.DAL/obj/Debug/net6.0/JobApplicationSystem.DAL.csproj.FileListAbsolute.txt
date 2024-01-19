@@ -1,6 +1,8 @@
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\bin\Debug\net6.0\JobApplicationSystem.DAL.deps.json
+C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\bin\Debug\net6.0\JobApplicationSystem.DAL.runtimeconfig.json
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\bin\Debug\net6.0\JobApplicationSystem.DAL.dll
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\bin\Debug\net6.0\JobApplicationSystem.DAL.pdb
+C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\JobApplicationSystem.DAL.csproj.AssemblyReference.cache
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\JobApplicationSystem.DAL.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\JobApplicationSystem.DAL.AssemblyInfoInputs.cache
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\JobApplicationSystem.DAL.AssemblyInfo.cs
@@ -8,7 +10,5 @@ C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\De
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\JobApplicationSystem.DAL.dll
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\refint\JobApplicationSystem.DAL.dll
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\JobApplicationSystem.DAL.pdb
-C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\ref\JobApplicationSystem.DAL.dll
-C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\JobApplicationSystem.DAL.csproj.AssemblyReference.cache
-C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\bin\Debug\net6.0\JobApplicationSystem.DAL.runtimeconfig.json
 C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\JobApplicationSystem.DAL.genruntimeconfig.cache
+C:\Users\LENOVO\Desktop\Faza 4 - Software Design\JobApplicationSystem.DAL\obj\Debug\net6.0\ref\JobApplicationSystem.DAL.dll
