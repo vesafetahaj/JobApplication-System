@@ -46,13 +46,21 @@ public class InterviewController : Controller
     {
         if (ModelState.IsValid)
         {
-           
+            bool isConflict = await _interviewService.HasConflictAsync(interview);
+
+            if (isConflict)
+            {
+                ModelState.AddModelError(string.Empty, "An interview already exists at the same time or there is less than 45 minutes between interviews.");
+                return View(interview);
+            }
+
             await _interviewService.ScheduleInterviewAsync(interview);
             return RedirectToAction("EmployerScheduledInterviews");
         }
 
         return View(interview);
     }
+
 
 
     [Authorize(Roles = "Employer")]
@@ -78,7 +86,7 @@ public class InterviewController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Employer")]
-    public async Task<IActionResult> Edit(int id,Interview interview)
+    public async Task<IActionResult> Edit(int id, Interview interview)
     {
         if (id != interview.InterviewId)
         {
@@ -87,8 +95,15 @@ public class InterviewController : Controller
 
         if (ModelState.IsValid)
         {
-            var existingInterview = await _interviewService.GetInterviewByIdAsync(id);
+            bool isConflict = await _interviewService.HasConflictAsync(interview);
 
+            if (isConflict)
+            {
+                ModelState.AddModelError(string.Empty, "An interview already exists at the same time or there is less than 45 minutes between interviews.");
+                return View(interview);
+            }
+
+            var existingInterview = await _interviewService.GetInterviewByIdAsync(id);
             interview.Application = existingInterview.Application;
 
             await _interviewService.UpdateInterviewAsync(interview);

@@ -12,6 +12,7 @@ namespace JobApplicationSystem.BAL.Services
         Task UpdateInterviewAsync(Interview interview);
         Task DeleteInterviewAsync(int interviewId);
         Task<List<Interview>> GetScheduledInterviewsForEmployerAsync(int employerId);
+        Task<bool> HasConflictAsync(Interview newInterview);
 
     }
 }

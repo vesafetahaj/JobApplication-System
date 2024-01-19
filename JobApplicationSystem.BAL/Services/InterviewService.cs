@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using JobApplicationSystem.DAL.Contracts;
+using JobApplicationSystem.DAL.Data;
 using JobApplicationSystem.DAL.Models;
 using JobApplicationSystem.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobApplicationSystem.BAL.Services
 {
@@ -10,10 +12,11 @@ namespace JobApplicationSystem.BAL.Services
     {
         private readonly IInterviewRepository<Interview> _interviewRepository;
 
-
-        public InterviewService(IInterviewRepository<Interview> interviewRepository)
+        private readonly JobApplicationSystemContext _dbContext;
+        public InterviewService(IInterviewRepository<Interview> interviewRepository, JobApplicationSystemContext dbContext)
         {
             _interviewRepository = interviewRepository;
+            _dbContext = dbContext;
         }
 
         public async Task ScheduleInterviewAsync(Interview interview)
@@ -49,6 +52,18 @@ namespace JobApplicationSystem.BAL.Services
 
            return await _interviewRepository.GetScheduledInterviewsForEmployerAsync(employerId);
 
+        }
+        public async Task<bool> HasConflictAsync(Interview newInterview)
+        {
+            var conflictingInterviews = await _dbContext.Interviews
+                .Where(i =>
+                    (i.Time >= newInterview.Time && i.Time <= newInterview.Time.Value.AddMinutes(45)) ||
+                    (i.Time <= newInterview.Time && i.Time.Value.AddMinutes(45) >= newInterview.Time) ||
+                    (i.Time <= newInterview.Time && i.Time.Value.AddMinutes(45) >= newInterview.Time.Value.AddMinutes(45)))
+                .ToListAsync();
+
+            // Check if there are any conflicting interviews
+            return conflictingInterviews.Any();
         }
 
     }

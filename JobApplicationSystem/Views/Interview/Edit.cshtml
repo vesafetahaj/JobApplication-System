@@ -42,6 +42,8 @@
                 @using (Html.BeginForm("Edit", "Interview", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
 
                     @Html.HiddenFor(model => model.InterviewId)
 
