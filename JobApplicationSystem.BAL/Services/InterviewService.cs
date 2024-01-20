@@ -58,15 +58,12 @@ namespace JobApplicationSystem.BAL.Services
         public async Task<bool> HasConflictAsync(Interview newInterview)
         {
             var conflictingInterviews = await _context.Interviews
-                .Where(i =>
-                    i.Application == newInterview.Application && 
-                    (i.Time >= newInterview.Time && i.Time <= newInterview.Time.Value.AddMinutes(45)) ||
-                    (i.Time <= newInterview.Time && i.Time.Value.AddMinutes(45) >= newInterview.Time) ||
-                    (i.Time <= newInterview.Time && i.Time.Value.AddMinutes(45) >= newInterview.Time.Value.AddMinutes(45)))
-                .ToListAsync();
+                .AnyAsync(i => i.Time == newInterview.Time);
 
-            return conflictingInterviews.Any();
+            return conflictingInterviews;
         }
+
+
 
     }
 }

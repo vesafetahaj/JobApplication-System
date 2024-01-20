@@ -114,17 +114,21 @@
     </div>
 
     <form asp-action="ApplyForJob">
-
         
-
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <label for="Experience">Experience:</label>
             <textarea id="Experience" name="Experience" placeholder="Enter your experience..." required></textarea>
+            @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+
         </div>
 
         <div class="form-group">
             <label asp-for="Resume">Upload your resume: </label>
             <input type="file" asp-for="Resume" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Resume, "", new { @class = "text-danger" })
+
         </div>
 
         <input type="hidden" name="Job" value="@Model.JobNavigation?.JobId">

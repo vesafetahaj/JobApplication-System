@@ -7,15 +7,22 @@
 <div style="width: 80%; margin: 0 auto; background-color: #DBD6D2; padding: 20px; border-radius: 10px; font-family: 'Anek Gurmukhi', sans-serif;">
     <h3 class="text-center">Edit Job</h3>
     <form asp-action="EditJob" asp-route-id="@Model.JobId" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <input type="hidden" asp-for="Employer" />
         <div class="row mr-lg-5 ml-lg-5 mb-3">
             <div class="col-md-6 pt-3">
                 <label asp-for="Title" style="font-weight: 600">Job Title</label>
                 <input asp-for="Title" type="text" class="form-control" placeholder="Ex. Web Developer" />
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+
             </div>
             <div class="col-md-6 pt-3">
                 <label asp-for="NumberPosition" style="font-weight: 600">Number of Positions</label>
                 <input asp-for="NumberPosition" type="number" class="form-control" placeholder="Enter number of positions" />
+                @Html.ValidationMessageFor(model => model.NumberPosition, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
@@ -23,6 +30,8 @@
             <div class="col-md-12 pt-3">
                 <label asp-for="Description" style="font-weight: 600">Description</label>
                 <input asp-for="Description" class="form-control" placeholder="Enter Job Description" />
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
@@ -30,10 +39,14 @@
             <div class="col-md-6 pt-3">
                 <label asp-for="Education" style="font-weight: 600">Education Required</label>
                 <input asp-for="Education" type="text" class="form-control" placeholder="Ex. BSc, MSc, PhD" />
+                @Html.ValidationMessageFor(model => model.Education, "", new { @class = "text-danger" })
+
             </div>
             <div class="col-md-6 pt-3">
                 <label asp-for="Experience" style="font-weight: 600">Experience Required</label>
                 <input asp-for="Experience" type="text" class="form-control" placeholder="Ex. 2 years" />
+                @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
@@ -41,10 +54,14 @@
             <div class="col-md-6 pt-3">
                 <label asp-for="Salary" style="font-weight: 600">Salary</label>
                 <input asp-for="Salary" type="text" class="form-control" placeholder="Ex. 2500/Month" />
+                @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+
             </div>
             <div class="col-md-6 pt-3">
                 <label asp-for="LastDateToApply" style="font-weight: 600">Last Date To Apply</label>
                 <input asp-for="LastDateToApply" type="date" class="form-control" />
+                @Html.ValidationMessageFor(model => model.LastDateToApply, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
@@ -52,6 +69,8 @@
             <div class="col-md-12 pt-3">
                 <label asp-for="Address" style="font-weight: 600">Address</label>
                 <input asp-for="Address" class="form-control" placeholder="Enter Work Location" />
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
@@ -64,7 +83,8 @@
                     <input type="file" id="fileInput" style="display: none" accept="image/*" />
                     <input type="hidden" asp-for="CompanyLogo" />
                     <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('fileInput').click()">Change Photo</button>
-                    <span asp-validation-for="CompanyLogo" class="text-danger"></span>
+                    @Html.ValidationMessageFor(model => model.CompanyLogo, "", new { @class = "text-danger" })
+
                 </div>
             </div>
         </div>

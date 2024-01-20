@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobApplicationSystem.DAL.Models
 {
@@ -12,9 +13,13 @@ namespace JobApplicationSystem.DAL.Models
 
         public int ApplicationId { get; set; }
         public string? Education { get; set; }
+
+        [Required(ErrorMessage = "Experience is required.")]
         public string? Experience { get; set; }
         public int? Applicant { get; set; }
         public int? Job { get; set; }
+
+        [Required(ErrorMessage = "Resume is required.")]
         public string? Resume { get; set; }
         public string? Status { get; set; }
         public string? Date { get; set; }

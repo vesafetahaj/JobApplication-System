@@ -196,14 +196,16 @@ namespace JobApplicationSystem.Controllers
             }
         }
 
-        [Authorize(Roles = "Employer, Applicant")]
 
+        [Authorize(Roles = "Employer, Applicant")]
         public async Task<ActionResult> Jobs()
         {
             var allJobs = await _jobService.GetAllJobsAsync();
 
             return View("Jobs", allJobs);
         }
+
+        [Authorize(Roles = "Employer, Applicant")]
         public async Task<ActionResult> Search(string searchQuery)
         {
             var searchResults = await _jobService.SearchJobsAsync(searchQuery);
