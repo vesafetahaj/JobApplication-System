@@ -1,0 +1,31 @@
+﻿@using JobApplicationSystem.DAL.Models;
+@model IEnumerable<Feedback>
+
+@{
+    ViewBag.Title = "Feedback List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    
+}
+
+<h1>Feedback List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Rating</th>
+            <th>Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var feedback in Model)
+        {
+            <tr>
+                <td>@feedback.AspNetUserNavigation?.Email</td>
+                <td>@feedback.Rating <i class="fa fa-star" aria-hidden="true" style="color: orange"></i></td>
+                <td>@feedback.Comments</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

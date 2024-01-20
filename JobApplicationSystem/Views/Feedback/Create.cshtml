@@ -1,0 +1,65 @@
+﻿@using JobApplicationSystem.DAL.Models
+@model Feedback
+
+@{
+    ViewBag.Title = "Submit Feedback";
+    Layout = "~/Views/Shared/_EmployerLayout.cshtml";
+    if (User.IsInRole("Applicant"))
+    {
+        Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+    }
+}
+
+<div class="container mt-4" style="width: 30%; margin: 0 auto;">
+    <h2 class="text-center">Submit Feedback</h2>
+
+    @using (Html.BeginForm("Create", "Feedback", FormMethod.Post, new { @class = "mt-4" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group text-center">
+
+            <div class="rating-radio">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <input type="radio" id="rating_@i" name="Rating" value="@i" style="display: none" />
+                    <label for="rating_@i" style="padding: 0 5px;">
+                        @i  <i class="fa fa-star" aria-hidden="true" style="color: orange"></i>
+                    </label>
+                }
+            </div>
+            @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", placeholder = "Enter a comment..." })
+            @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <button type="submit" class="btn btn-warning" style="margin-left: 30%;">Submit Feedback</button>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .rating-radio {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+        .rating-radio label {
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        .rating-radio input[type="radio"]:checked + label {
+            color: orange;
+        }
+</style>

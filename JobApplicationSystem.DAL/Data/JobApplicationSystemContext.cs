@@ -27,6 +27,7 @@ namespace JobApplicationSystem.DAL.Data
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<Employer> Employers { get; set; } = null!;
+        public virtual DbSet<Feedback> Feedbacks { get; set; } = null!;
         public virtual DbSet<Interview> Interviews { get; set; } = null!;
         public virtual DbSet<Job> Jobs { get; set; } = null!;
 
@@ -296,6 +297,21 @@ namespace JobApplicationSystem.DAL.Data
                     .HasForeignKey<Employer>(d => d.User)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Employer_AspNetUsers");
+            });
+
+            modelBuilder.Entity<Feedback>(entity =>
+            {
+                entity.ToTable("Feedback");
+
+                entity.Property(e => e.FeedbackId).HasColumnName("FeedbackID");
+
+                entity.Property(e => e.AspNetUser).HasMaxLength(450);
+
+                entity.HasOne(d => d.AspNetUserNavigation)
+                    .WithMany(p => p.Feedbacks)
+                    .HasForeignKey(d => d.AspNetUser)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Feedback_AspNetUsers1");
             });
 
             modelBuilder.Entity<Interview>(entity =>

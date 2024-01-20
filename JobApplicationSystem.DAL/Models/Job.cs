@@ -39,6 +39,7 @@ namespace JobApplicationSystem.DAL.Models
 
         [Required(ErrorMessage = "Address is required.")]
         public string? Address { get; set; }
+
         public int? Employer { get; set; }
 
         [Required(ErrorMessage = "Salary is required.")]

@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\images\\company-representatives-reading-applicant-resume-hiring.jpg"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\feedback.png",
+      "PackagePath": "staticwebassets\\images\\feedback.png"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\form.png",
       "PackagePath": "staticwebassets\\images\\form.png"
     },
@@ -119,6 +123,10 @@
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\suitcase.png",
       "PackagePath": "staticwebassets\\images\\suitcase.png"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\thank-you-card-collage-concept.jpg",
+      "PackagePath": "staticwebassets\\images\\thank-you-card-collage-concept.jpg"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\workloop-high-resolution-logo-transparent.png",

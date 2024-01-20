@@ -6,6 +6,7 @@ using JobApplicationSystem.DAL.Repositories;
 using JobApplicationSystem.DAL.Contracts;
 using JobApplicationSystem.DAL.Models;
 using JobApplicationSystem.DAL.Data;
+using JobApplicationSystem.BLL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ builder.Services.AddScoped<IAdministratorService, AdministratorService>();
 builder.Services.AddScoped<IJobService, JobService>();
 builder.Services.AddScoped<IApplicationService, ApplicationService>();
 builder.Services.AddScoped<IInterviewService, InterviewService>();
+builder.Services.AddScoped<IFeedbackService, FeedbackService>();
 
 builder.Services.AddScoped<IRoleRepository<AspNetRole>, RoleRepository>();
 builder.Services.AddScoped<IEmployerRepository<Employer>, EmployerRepository>();
@@ -36,6 +38,8 @@ builder.Services.AddScoped<IAdministratorRepository<Administrator>, Administrato
 builder.Services.AddScoped<IJobRepository<Job>, JobRepository>();
 builder.Services.AddScoped<IApplicationRepository<Application>, ApplicationRepository>();
 builder.Services.AddScoped<IInterviewRepository<Interview>, InterviewRepository>();
+builder.Services.AddScoped<IFeedbackRepository<Feedback>, FeedbackRepository>();
+
 
 
 
