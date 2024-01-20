@@ -29,7 +29,6 @@ namespace JobApplicationSystem.DAL.Data
         public virtual DbSet<Employer> Employers { get; set; } = null!;
         public virtual DbSet<Interview> Interviews { get; set; } = null!;
         public virtual DbSet<Job> Jobs { get; set; } = null!;
-        public virtual DbSet<Message> Messages { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
