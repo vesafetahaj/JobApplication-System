@@ -31,7 +31,7 @@ namespace JobApplicationSystem.DAL.Repositories
         }
         public async Task<IEnumerable<Job>> GetAllJobsAsync()
         {
-            return await _dbcontext.Jobs.ToListAsync();
+            return await _dbcontext.Jobs.Include(a=>a.EmployerNavigation).ToListAsync();
         }
 
         public async Task<bool> UpdateJobAsync(int jobId, Job updatedJob)
@@ -47,7 +47,6 @@ namespace JobApplicationSystem.DAL.Repositories
             existingJob.Experience = updatedJob.Experience;
             existingJob.NumberPosition = updatedJob.NumberPosition;
             existingJob.LastDateToApply = updatedJob.LastDateToApply;
-            existingJob.Company = updatedJob.Company;
             existingJob.CompanyLogo = updatedJob.CompanyLogo;
             existingJob.Address = updatedJob.Address;
             existingJob.Employer = updatedJob.Employer;

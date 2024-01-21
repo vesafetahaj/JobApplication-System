@@ -108,6 +108,8 @@ namespace JobApplicationSystem.Controllers
 
             string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
+            job.Company = employer.Company;
+
 
             if (job.Employer != employer.EmployerId)
             {
