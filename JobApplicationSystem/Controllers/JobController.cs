@@ -99,6 +99,7 @@ namespace JobApplicationSystem.Controllers
         [Authorize(Roles = "Employer")]
         public async Task<ActionResult> EditJob(int id)
         {
+
             var job = await _jobService.GetJobByIdAsync(id);
 
             if (job == null)
@@ -124,25 +125,30 @@ namespace JobApplicationSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditJob(int id, Job updatedJob)
         {
+
             try
             {
-                var job = await _jobService.GetJobByIdAsync(id);
-
-                if (job.Employer != updatedJob.Employer)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction(nameof(UnauthorizedJob)); 
-                }
+                    var job = await _jobService.GetJobByIdAsync(id);
 
-                bool result = await _jobService.UpdateJobAsync(id, updatedJob);
+                    if (job.Employer != updatedJob.Employer)
+                    {
+                        return RedirectToAction(nameof(UnauthorizedJob));
+                    }
 
-                if (result)
-                {
-                    return RedirectToAction(nameof(Index));
+                    bool result = await _jobService.UpdateJobAsync(id, updatedJob);
+
+                    if (result)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
-                else
-                {
-                    return NotFound();
-                }
+                return View(updatedJob);
             }
             catch
             {
