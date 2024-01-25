@@ -128,7 +128,8 @@ namespace JobApplicationSystem.Controllers
 
             try
             {
-              
+                if (ModelState.IsValid)
+                {
                     var job = await _jobService.GetJobByIdAsync(id);
 
                     if (job.Employer != updatedJob.Employer)
@@ -146,7 +147,8 @@ namespace JobApplicationSystem.Controllers
                     {
                         return NotFound();
                     }
-          
+                }
+                return View(updatedJob);
             }
             catch
             {

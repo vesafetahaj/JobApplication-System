@@ -31,7 +31,6 @@ namespace JobApplicationSystem.DAL.Models
         [Required(ErrorMessage = "LastDateToApply is required.")]
         public DateTime? LastDateToApply { get; set; }
 
-        [Required(ErrorMessage = "Company is required.")]
         public string? Company { get; set; }
 
         [Required(ErrorMessage = "CompanyLogo is required.")]
