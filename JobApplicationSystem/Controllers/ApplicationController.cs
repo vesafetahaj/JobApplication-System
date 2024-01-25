@@ -24,18 +24,26 @@ namespace JobApplicationSystem.Controllers
         {
             var job = await _jobService.GetJobByIdAsync(jobId);
 
-            if (job.LastDateToApply < DateTime.Now)
-            {
-                ViewData["ErrorMessage"] = "The application deadline for this job has passed. You cannot apply.";
-            }
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var applicant = await _applicantService.GetApplicantDetailsAsync(loggedInUserId);
 
             var applicationModel = new Application
             {
                 JobNavigation = job
             };
 
+            if (_applicationService.CheckIfApplicantApplied(applicant.ApplicantId, jobId))
+            {
+                TempData["ErrorMessage"] = "You have already applied for this job.";
+            }
+            else if (job.LastDateToApply < DateTime.Now)
+            {
+                TempData["ErrorMessage"] = "The application deadline for this job has passed. You cannot apply.";
+            }
+
             return View(applicationModel);
         }
+
 
 
         [Authorize(Roles = "Applicant")]

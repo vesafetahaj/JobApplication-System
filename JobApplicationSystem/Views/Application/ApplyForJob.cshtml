@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+    var errorMessage = TempData["ErrorMessage"] as string;
 }
 
 <style>
@@ -99,10 +100,10 @@
 </style>
 
 <div class="container">
-    @if (ViewData["ErrorMessage"] != null)
+    @if (!string.IsNullOrEmpty(errorMessage))
     {
         <div class="alert alert-danger">
-            @ViewData["ErrorMessage"]
+            @errorMessage
         </div>
     }
     <h4>Application Details</h4>
@@ -126,7 +127,7 @@
 
         <div class="form-group">
             <label asp-for="Resume">Upload your resume: </label>
-            <input type="file" asp-for="Resume" class="form-control" />
+            <input type="file" asp-for="Resume" class="form-control" required/>
             @Html.ValidationMessageFor(model => model.Resume, "", new { @class = "text-danger" })
 
         </div>
