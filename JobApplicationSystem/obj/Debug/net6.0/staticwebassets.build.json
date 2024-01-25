@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZKPinVDPa6NyiBZ9V2LVmesYkYTmp+ee10aCM0oaZnA=",
+  "Hash": "Hx1sA3YBu7NDQ9GnQp12Oun1Gl24fDXVFiqko3cl4No=",
   "Source": "JobApplicationSystem",
   "BasePath": "_content/JobApplicationSystem",
   "Mode": "Default",
@@ -1222,6 +1222,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\146007.png"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\3135715.png",
+      "SourceId": "JobApplicationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\",
+      "BasePath": "_content/JobApplicationSystem",
+      "RelativePath": "images/3135715.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\3135715.png"
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\8hO4Ijb9_400x400.jpg",

@@ -133,7 +133,6 @@ namespace JobApplicationSystem.Controllers
             return View(admin);
 
         }
-        // GET: AdministratorController
         public ActionResult Index()
         {
             return View();
