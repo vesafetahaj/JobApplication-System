@@ -50,7 +50,7 @@ public class InterviewController : Controller
 
             if (isConflict)
             {
-                ModelState.AddModelError(string.Empty, "An interview already exists at the same time.");
+                ModelState.AddModelError(string.Empty, "An interview already exists at the same time or the selected time is before today.");
                 return View(interview);
             }
 
@@ -99,7 +99,7 @@ public class InterviewController : Controller
 
             if (isConflict)
             {
-                ModelState.AddModelError(string.Empty, "An interview already exists at the same time.");
+                ModelState.AddModelError(string.Empty, "An interview already exists at the same time or the selected time is before today.");
                 return View(interview);
             }
 

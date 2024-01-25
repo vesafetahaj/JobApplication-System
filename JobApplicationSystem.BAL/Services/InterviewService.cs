@@ -60,7 +60,9 @@ namespace JobApplicationSystem.BAL.Services
             var conflictingInterviews = await _context.Interviews
                 .AnyAsync(i => i.Time == newInterview.Time && i.InterviewId != newInterview.InterviewId);
 
-            return conflictingInterviews;
+            bool isScheduledBeforeToday = newInterview.Time.HasValue && newInterview.Time < DateTime.Today;
+
+            return conflictingInterviews || isScheduledBeforeToday;
         }
 
 
