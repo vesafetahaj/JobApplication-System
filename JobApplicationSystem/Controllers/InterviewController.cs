@@ -143,7 +143,11 @@ public class InterviewController : Controller
     {
         string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
-
+        if (!_employerService.HasProvidedPersonalInfo(loggedInUserId))
+        {
+            TempData["ErrorMessage"] = "You cannot take actions without providing personal information first.";
+            return RedirectToAction("PersonalInfo", "Employer");
+        }
         var interviews = await _interviewService.GetScheduledInterviewsForEmployerAsync(employer.EmployerId);
 
         return View(interviews);

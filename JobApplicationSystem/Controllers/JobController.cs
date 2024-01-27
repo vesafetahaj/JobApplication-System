@@ -32,7 +32,7 @@ namespace JobApplicationSystem.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Employer");
+                return RedirectToAction("PersonalInfo", "Employer");
             }
         }
 
@@ -52,6 +52,12 @@ namespace JobApplicationSystem.Controllers
         [Authorize(Roles = "Employer")]
         public ActionResult CreateJob()
         {
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!_employerService.HasProvidedPersonalInfo(loggedInUserId))
+            {
+                TempData["ErrorMessage"] = "You cannot take actions without providing personal information first.";
+                return RedirectToAction("PersonalInfo", "Employer");
+            }
             return View();
         }
 
@@ -72,7 +78,7 @@ namespace JobApplicationSystem.Controllers
                     string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                     var employer = await _employerService.GetEmployerDetailsAsync(loggedInUserId);
-
+                    
                     if (employer != null)
                     {
                         job.Employer = employer.EmployerId;
@@ -209,7 +215,12 @@ namespace JobApplicationSystem.Controllers
         public async Task<ActionResult> Jobs()
         {
             var allJobs = await _jobService.GetAllJobsAsync();
-
+            string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!_employerService.HasProvidedPersonalInfo(loggedInUserId))
+            {
+                TempData["ErrorMessage"] = "You cannot take actions without providing personal information first.";
+                return RedirectToAction("PersonalInfo", "Employer");
+            }
             return View("Jobs", allJobs);
         }
 
