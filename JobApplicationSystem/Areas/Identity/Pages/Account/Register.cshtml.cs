@@ -163,7 +163,8 @@ namespace JobApplicationSystem.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
+            var roles = await _roleManager.Roles.ToListAsync();
+            ViewData["Roles"] = new SelectList(roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
             // If we got this far, something failed, redisplay form
             return Page();
         }
