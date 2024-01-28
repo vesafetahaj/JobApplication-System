@@ -16,6 +16,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap; /* Allow multiple rows for smaller screens */
     }
 
     .dashboard-box {
@@ -59,6 +60,17 @@
     .dashboard-box a:hover {
         text-decoration: underline; /* Add underline on hover for all links */
     }
+
+    .dashboard-box.clock,
+    .dashboard-box.calendar {
+        width: 400px; /* Adjust width for clock and calendar */
+    }
+
+        /* Add style for clock and calendar */
+        .dashboard-box.clock p,
+        .dashboard-box.calendar p {
+            font-size: 18px; /* Adjust font size for clock and calendar text */
+        }
 </style>
 
 <div id="main">
@@ -66,9 +78,9 @@
 
     <div class="dashboard-container">
         <div class="dashboard-box">
-            <h3> Personal Data</h3>
+            <h3>Personal Data</h3>
             <div class="divider-line"></div>
-            <p>Wanna change your personal data?<br><a href="/Administrator/PersonalInfo"> Click here </a></p>
+            <p>Wanna change your personal data?<br><a href="/Administrator/PersonalInfo">Click here</a></p>
         </div>
 
         <div class="dashboard-box">
@@ -80,5 +92,36 @@
             <h3>Roles</h3>
             <p><a href="/Roles">View and manage roles</a></p>
         </div>
+
+        <!-- Clock Box -->
+        <div class="dashboard-box clock">
+            <h3>Current Time</h3>
+            <div class="divider-line"></div>
+            <p id="current-time"></p>
+        </div>
+
+        <!-- Calendar Box -->
+        <div class="dashboard-box calendar">
+            <h3>Today's Date</h3>
+            <div class="divider-line"></div>
+            <p id="today-date"></p>
+        </div>
     </div>
 </div>
+
+<script>
+    // Update the current time every second
+    setInterval(() => {
+        const currentTimeElement = document.getElementById("current-time");
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        currentTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }, 1000);
+
+    // Display today's date
+    const todayDateElement = document.getElementById("today-date");
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    todayDateElement.textContent = new Date().toLocaleDateString('en-US', options);
+</script>
