@@ -1,9 +1,84 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    #main {
+        text-align: center;
+        margin: 50px auto;
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-size: 36px;
+    }
+
+    .dashboard-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dashboard-box {
+        width: 200px;
+        height: 150px;
+        background-color: #8b6248;
+        border-radius: 10px;
+        margin: 20px;
+        padding: 20px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        position: relative;
+    }
+
+        .dashboard-box h3 {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-box p {
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .dashboard-box a {
+            color: #000; /* Set link color to black */
+            text-decoration: none;
+        }
+
+    .divider-line {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 1px;
+        background-color: #000;
+    }
+
+    .dashboard-box a:hover {
+        text-decoration: underline; /* Add underline on hover for all links */
+    }
+</style>
+
 <div id="main">
-    <h1>Welcome to your dashboard Admin!</h1>
+    <h1>Welcome to your dashboard, Admin!</h1>
+
+    <div class="dashboard-container">
+        <div class="dashboard-box">
+            <h3> Personal Data</h3>
+            <div class="divider-line"></div>
+            <p>Wanna change your personal data?<br><a href="/Administrator/PersonalInfo"> Click here </a></p>
+        </div>
+
+        <div class="dashboard-box">
+            <h3>Feedbacks</h3>
+            <p><a href="/Feedback">View your feedbacks</a></p>
+        </div>
+
+        <div class="dashboard-box">
+            <h3>Roles</h3>
+            <p><a href="/Roles">View and manage roles</a></p>
+        </div>
+    </div>
 </div>
