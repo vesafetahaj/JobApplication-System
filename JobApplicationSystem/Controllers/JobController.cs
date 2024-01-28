@@ -12,11 +12,14 @@ namespace JobApplicationSystem.Controllers
     {
         private readonly IJobService _jobService;
         private readonly IEmployerService _employerService;
+        private readonly IApplicantService _applicantService;
 
-        public JobController(IJobService jobService, IEmployerService employerService)
+
+        public JobController(IJobService jobService, IEmployerService employerService, IApplicantService applicantService)
         {
             _jobService = jobService;
             _employerService = employerService;
+            _applicantService = applicantService;   
         }
 
         [Authorize(Roles = "Employer")]
@@ -216,11 +219,8 @@ namespace JobApplicationSystem.Controllers
         {
             var allJobs = await _jobService.GetAllJobsAsync();
             string loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!_employerService.HasProvidedPersonalInfo(loggedInUserId))
-            {
-                TempData["ErrorMessage"] = "You cannot take actions without providing personal information first.";
-                return RedirectToAction("PersonalInfo", "Employer");
-            }
+            
+
             return View("Jobs", allJobs);
         }
 
