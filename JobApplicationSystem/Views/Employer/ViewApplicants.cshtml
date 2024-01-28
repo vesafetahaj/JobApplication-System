@@ -155,8 +155,7 @@ else
                 $('#action-buttons-' + applicationId).html('');
             })
             .fail(function (xhr, status, error) {
-                alert('Failed to approve application. Status: ' + status + ', Error: ' + error);
-            .fail(function () {
+                console.error('Failed to approve application. Status: ' + status + ', Error: ' + error);
                 alert('Failed to approve application.');
             });
     }
@@ -168,11 +167,11 @@ else
                 $('#action-buttons-' + applicationId).html('');
             })
             .fail(function (xhr, status, error) {
-                alert('Failed to decline application. Status: ' + status + ', Error: ' + error);
-            .fail(function () {
+                console.error('Failed to decline application. Status: ' + status + ', Error: ' + error);
                 alert('Failed to decline application.');
             });
     }
 </script>
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
