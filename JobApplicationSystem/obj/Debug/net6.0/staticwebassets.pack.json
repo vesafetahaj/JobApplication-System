@@ -37,12 +37,28 @@
       "PackagePath": "staticwebassets\\files\\srs.docx"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\1.png",
+      "PackagePath": "staticwebassets\\images\\1.png"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\146007.png",
       "PackagePath": "staticwebassets\\images\\146007.png"
     },
     {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\2.png",
+      "PackagePath": "staticwebassets\\images\\2.png"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\3.png",
+      "PackagePath": "staticwebassets\\images\\3.png"
+    },
+    {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\3135715.png",
       "PackagePath": "staticwebassets\\images\\3135715.png"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\4.png",
+      "PackagePath": "staticwebassets\\images\\4.png"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\8hO4Ijb9_400x400.jpg",
@@ -59,6 +75,10 @@
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\businessman.png",
       "PackagePath": "staticwebassets\\images\\businessman.png"
+    },
+    {
+      "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\cacttus_logo.jpeg",
+      "PackagePath": "staticwebassets\\images\\cacttus_logo.jpeg"
     },
     {
       "Id": "C:\\Users\\LENOVO\\Desktop\\Faza 4 - Software Design\\JobApplicationSystem\\wwwroot\\images\\colleagues-giving-fist-bump.jpg",

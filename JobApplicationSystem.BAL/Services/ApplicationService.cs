@@ -22,7 +22,15 @@ namespace JobApplicationSystem.BAL.Services
 
         public async Task<bool> AddApplicationAsync(Application application)
         {
-            
+            if (application.Applicant == null || application.Job == null)
+            {
+                throw new ArgumentException("Application must have a valid applicant and job reference");
+            }
+
+            if (CheckIfApplicantApplied(application.Applicant, application.Job))
+            {
+                throw new InvalidOperationException("Applicant has already applied for this job");
+            }
             return await _applicationRepository.AddApplicationAsync(application);
         }
 
@@ -38,6 +46,15 @@ namespace JobApplicationSystem.BAL.Services
 
         public async Task<bool> UpdateApplicationAsync(int applicationId, Application updatedApplication)
         {
+            if (updatedApplication.Applicant == null || updatedApplication.Job == null)
+            {
+                throw new ArgumentException("Updated application must have a valid applicant and job reference");
+            }
+
+            if (CheckIfApplicantApplied(updatedApplication.Applicant, updatedApplication.Job))
+            {
+                throw new InvalidOperationException("Applicant has already applied for the updated job");
+            }
             return await _applicationRepository.UpdateApplicationAsync(applicationId, updatedApplication);
         }
 
@@ -47,6 +64,10 @@ namespace JobApplicationSystem.BAL.Services
         }
         public bool CheckIfApplicantApplied(int? applicantId, int? jobId)
         {
+            if (applicantId == null || jobId == null)
+            {
+                throw new ArgumentException("Both applicantId and jobId must be provided for application check");
+            }
             return _applicationRepository.CheckIfApplicantApplied(applicantId, jobId);
         }
         public async Task<IEnumerable<Applicant>> GetApplicantsForJobAsync(int jobId)
